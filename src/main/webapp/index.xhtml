@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head><title>Welcome to Online Testing</title></h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:outputLabel for="username" value="Username : " /></td>
+                <td><p:inputText id="username" value="#{userBean.username}">
+                	<f:validateLength minimum="3" />
+                    <p:ajax event="blur" update="usernameMsg" />
+                </p:inputText>
+                    <p:message id="usernameMsg" for="username" display="icon"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel for="password" value="Password : " /></td>
+                <td><p:inputText id="password" value="#{userBean.password}">
+                    <f:validateLength minimum="5" />
+                    <p:ajax event="blur" update="passwordMsg" />
+                </p:inputText>
+                    <p:message id="passwordMsg" for="password" display="icon"/>
+                </td>
+            </tr>
+            <tr>
+                <td><p:commandButton id="login" value="Login" action="#{userBean.login}" ajax="false"/></td>
+                <td><p:commandButton id="reset" value="Reset" action="#{userBean.reset}" ajax="false"/></td>
+            </tr>
+        </table>
+    </h:form>
+</h:body>
+</html>
+
