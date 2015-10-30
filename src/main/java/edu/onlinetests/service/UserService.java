@@ -3,7 +3,7 @@ package edu.onlinetests.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.onlinetests.dao.UserDAO;
+import edu.onlinetests.persistance.UserDAO;
 
 @Service(value = "userService")
 public class UserService {

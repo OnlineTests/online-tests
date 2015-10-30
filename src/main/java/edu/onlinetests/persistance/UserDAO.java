@@ -1,4 +1,4 @@
-package edu.onlinetests.dao;
+package edu.onlinetests.persistance;
 
 import org.springframework.stereotype.Repository;
 
