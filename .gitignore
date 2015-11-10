@@ -1,4 +1,4 @@
 target/
 .project
 .settings/
-./src/main/resources/local.properties
+src/main/resources/local.properties
