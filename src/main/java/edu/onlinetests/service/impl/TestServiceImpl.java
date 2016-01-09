@@ -3,6 +3,7 @@ package edu.onlinetests.service.impl;
 import java.util.SortedSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.TestResult;
@@ -10,6 +11,7 @@ import edu.onlinetests.model.User;
 import edu.onlinetests.persistance.TestDAO;
 import edu.onlinetests.service.TestService;
 
+@Component
 public class TestServiceImpl implements TestService {
 
 	private TestDAO testDAO;
