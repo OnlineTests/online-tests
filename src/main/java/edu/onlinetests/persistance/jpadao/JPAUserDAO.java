@@ -3,14 +3,18 @@ package edu.onlinetests.persistance.jpadao;
 import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.User;
+import edu.onlinetests.model.builder.UserBuilder;
 import edu.onlinetests.persistance.UserDAO;
 
 @Component
 public class JPAUserDAO implements UserDAO {
 
 	@Override
-	public String login(String username, String password)  {
-		return "Hello Spring!";
+	public User login(String username, String password)  {
+		return UserBuilder.getBuilder()
+				.setUsername(username)
+				.setPassword(password)
+				.build();
 	}
 
 	@Override
