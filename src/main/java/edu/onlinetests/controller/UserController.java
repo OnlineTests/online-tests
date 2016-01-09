@@ -3,9 +3,11 @@ package edu.onlinetests.controller;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.User;
 import edu.onlinetests.service.UserService;
@@ -13,9 +15,10 @@ import edu.onlinetests.view.Pages;
 
 @ManagedBean(name = "userController")
 @RequestScoped
+@Component
 public class UserController {
 
-	@ManagedProperty(value = "#{userService}")
+	@Autowired
 	private UserService userService;
 
 	private String username;

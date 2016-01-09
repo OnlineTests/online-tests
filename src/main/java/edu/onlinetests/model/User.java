@@ -27,7 +27,7 @@ public class User implements Serializable {
 	private String email;
 
 	@Column(nullable=false, length=1)
-	private Gender gender;
+	private String gender;
 
 	@Column(nullable=false, length=50)
 	private String name;
@@ -69,14 +69,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return this.gender;
 	}
 
 	public void setGender(String gender) {
-		this.gender = Gender.valueOf(gender);
-	}
-	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 

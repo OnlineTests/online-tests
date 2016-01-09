@@ -31,7 +31,7 @@ public class RegisterController {
 		User user = UserBuilder.getBuilder()
 			.setAge(Integer.parseInt(age))
 			.setEmail(email)
-			.setGender(Gender.valueOf(gender))
+			.setGender(gender)
 			.setName(name)
 			.setUsername(username)
 			.setPassword(password)

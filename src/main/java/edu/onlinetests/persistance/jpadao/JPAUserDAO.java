@@ -1,6 +1,7 @@
 package edu.onlinetests.persistance.jpadao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,8 +26,10 @@ public class JPAUserDAO implements UserDAO {
 
 	@Override
 	public User login(String username, String password)  {
-		User user = (User) currentEntityManager().createQuery("select * from user where username="+username+" and password="+password);
-		return user;
+		Query query = (Query) currentEntityManager().createQuery("select u from User u where u.username=:username and password=:password");
+		query.setParameter("username", username);
+		query.setParameter("password", password);
+		return (User) query.getSingleResult();
 	}
 
 	@Override
