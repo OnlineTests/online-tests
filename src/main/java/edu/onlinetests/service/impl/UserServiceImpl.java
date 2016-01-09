@@ -1,11 +1,13 @@
 package edu.onlinetests.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.User;
 import edu.onlinetests.persistance.UserDAO;
 import edu.onlinetests.service.*;
 
+@Component
 public class UserServiceImpl implements UserService {
 	
 	private UserDAO userDAO;
