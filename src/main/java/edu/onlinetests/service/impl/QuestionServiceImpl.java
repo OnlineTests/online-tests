@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.Question;
@@ -12,6 +13,7 @@ import edu.onlinetests.persistance.QuestionDAO;
 import edu.onlinetests.persistance.QuestionStatisticDAO;
 import edu.onlinetests.service.QuestionService;
 
+@Component
 public class QuestionServiceImpl implements QuestionService {
 
 	private QuestionDAO questionDAO;
