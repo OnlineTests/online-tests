@@ -13,7 +13,7 @@ import edu.onlinetests.persistance.QuestionDAO;
 import edu.onlinetests.persistance.QuestionStatisticDAO;
 import edu.onlinetests.service.QuestionService;
 
-@Component
+//@Component
 public class QuestionServiceImpl implements QuestionService {
 
 	private QuestionDAO questionDAO;

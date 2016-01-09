@@ -4,7 +4,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import edu.onlinetests.model.Gender;
 import edu.onlinetests.model.User;
 import edu.onlinetests.model.builder.UserBuilder;
 import edu.onlinetests.service.UserService;

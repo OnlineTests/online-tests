@@ -11,7 +11,7 @@ import edu.onlinetests.model.User;
 import edu.onlinetests.persistance.TestDAO;
 import edu.onlinetests.service.TestService;
 
-@Component
+//@Component
 public class TestServiceImpl implements TestService {
 
 	private TestDAO testDAO;

@@ -101,5 +101,10 @@ public class Category implements Serializable {
 
 		return testResult;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 
 }

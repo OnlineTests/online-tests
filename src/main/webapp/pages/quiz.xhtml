@@ -5,16 +5,27 @@
 <h:head>
 	<title>Quiz</title>
 	<link rel="stylesheet" href="../css/style.css" />
+	<script>
+		$(document).ready(function(){
+		    $("#start\\:startButton").click(function(){
+		        $('#start').css("display", "none");
+		        $('#end').css("display", "block")
+		    });
+		});
+	</script>
 </h:head>
 <h:body>
-	<h:form id="quiz">
-		<h:panelGrid cellpadding="5">
+	<h:form id="end">
+		<p:commandButton value="End Quiz" ajax="false"/>
+	</h:form>
+	<h:form id="start">
+		<h:panelGrid columns="4" cellspacing="5">
 	        <h:outputLabel for="categories" value="Category:" />
 	        <p:selectOneMenu id="categories" value="#{quizController.selectedCategory}" label="Categories"
-	                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+	                              filter="true" filterMatchMode="startsWith">
 	            <f:selectItems value="#{quizController.categories}" />
 	        </p:selectOneMenu>
-	        <p:commandButton value="Start Quiz" ajax="false"/>
+	        <p:commandButton id="startButton" value="Start Quiz" ajax="true"/>
 	    </h:panelGrid>
 	</h:form>
 </h:body>
