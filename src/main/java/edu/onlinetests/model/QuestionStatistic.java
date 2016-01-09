@@ -10,8 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Question_Statistic")
-@NamedQuery(name="Question_Statistic.findAll", query="SELECT q FROM Question_Statistic q")
-public class Question_Statistic implements Serializable {
+public class QuestionStatistic implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,7 +34,7 @@ public class Question_Statistic implements Serializable {
 	@OneToOne(mappedBy="questionStatistic")
 	private Question question;
 
-	public Question_Statistic() {
+	public QuestionStatistic() {
 	}
 
 	public int getStatisticId() {

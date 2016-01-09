@@ -1,8 +1,16 @@
 package edu.onlinetests.model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -29,7 +37,7 @@ public class Category implements Serializable {
 
 	//bi-directional many-to-one association to Test_Result
 	@OneToMany(mappedBy="category")
-	private List<Test_Result> testResults;
+	private List<TestResult> testResults;
 
 	public Category() {
 	}
@@ -72,22 +80,22 @@ public class Category implements Serializable {
 		return question;
 	}
 
-	public List<Test_Result> getTestResults() {
+	public List<TestResult> getTestResults() {
 		return this.testResults;
 	}
 
-	public void setTestResults(List<Test_Result> testResults) {
+	public void setTestResults(List<TestResult> testResults) {
 		this.testResults = testResults;
 	}
 
-	public Test_Result addTestResult(Test_Result testResult) {
+	public TestResult addTestResult(TestResult testResult) {
 		getTestResults().add(testResult);
 		testResult.setCategory(this);
 
 		return testResult;
 	}
 
-	public Test_Result removeTestResult(Test_Result testResult) {
+	public TestResult removeTestResult(TestResult testResult) {
 		getTestResults().remove(testResult);
 		testResult.setCategory(null);
 

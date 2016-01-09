@@ -2,12 +2,12 @@ package edu.onlinetests.persistance;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class UserDAO {
+import edu.onlinetests.model.User;
 
-	
-	public String login() {
-		return "Hello Spring!";
-	}
+@Repository
+public interface UserDAO {
+
+	String login(String username, String password);
+	User register(User user);
 	
 }

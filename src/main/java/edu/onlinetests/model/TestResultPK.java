@@ -8,7 +8,7 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class Test_ResultPK implements Serializable {
+public class TestResultPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class Test_ResultPK implements Serializable {
 	@Column(insertable=false, updatable=false, unique=true, nullable=false)
 	private int categoryId;
 
-	public Test_ResultPK() {
+	public TestResultPK() {
 	}
 	public int getUserId() {
 		return this.userId;
@@ -37,10 +37,10 @@ public class Test_ResultPK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof Test_ResultPK)) {
+		if (!(other instanceof TestResultPK)) {
 			return false;
 		}
-		Test_ResultPK castOther = (Test_ResultPK)other;
+		TestResultPK castOther = (TestResultPK)other;
 		return 
 			(this.userId == castOther.userId)
 			&& (this.categoryId == castOther.categoryId);

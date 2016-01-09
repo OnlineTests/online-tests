@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Register form</title>
+	<link rel="stylesheet" href="css/style.css"/>
+</h:head>
+<h:body>
+    <h:form id="register" styleClass="form-module">
+    	<p:messages id="msgs" />
+        <h:panelGrid columns="3" rowClasses="center" cellpadding="5">
+        	<h:outputLabel for="username" value="Username: " />
+        	<p:inputText id="username" value="#{registerController.username}" required="true" label="Username">
+               	<p:ajax event="blur" update="usernameMsg" />
+           	</p:inputText>
+           	<p:message id="usernameMsg" for="username" display="icon"/>
+           	
+           	<h:outputLabel for="password" value="Password: " />
+           	<p:inputText id="password" value="#{registerController.password}" type="password" required="true" label="Password">
+                <p:ajax event="blur" update="passwordMsg" />
+            </p:inputText>
+            <p:message id="passwordMsg" for="password" display="icon"/>
+            
+            <h:outputLabel for="name" value="Name: " />
+           	<p:inputText id="name" value="#{registerController.name}" required="true" label="Name">
+                <p:ajax event="blur" update="nameMsg" />
+            </p:inputText>
+            <p:message id="nameMsg" for="name" display="icon"/>
+            
+            <h:outputLabel for="age" value="Age: " />
+           	<p:inputText id="age" value="#{registerController.age}" required="true" label="Age">
+           		<f:validateRegex pattern="[0-9]*"/>
+                <p:ajax event="blur" update="ageMsg" />
+            </p:inputText>
+            <p:message id="ageMsg" for="age" display="icon"/>
+            
+            <h:outputLabel for="email" value="Email: " />
+           	<p:inputText id="email" value="#{registerController.email}" required="true" label="Email">
+           		<f:validateRegex pattern="[a-z][0-9a-z]*@[a-z]*\.[a-z]*"/>
+                <p:ajax event="blur" update="emailMsg" />
+            </p:inputText>
+            <p:message id="emailMsg" for="email" display="icon"/>
+            
+            <h:outputLabel for="gender" value="Gender: " />
+	        <p:selectOneRadio id="gender" value="#{registerController.gender}" required="true" label="Gender">
+	            <f:selectItem itemLabel="Male" itemValue="M" />
+	            <f:selectItem itemLabel="Female" itemValue="F" />
+	        </p:selectOneRadio>
+            <p:message id="genderMsg" for="gender" display="icon"/>
+        </h:panelGrid>
+        <h:panelGrid columns="2" cellspacing="18" cellpadding="16">
+        	<p:commandButton id="register" value="Register" action="#{registerController.register}" ajax="false"/>
+			<p:commandButton id="back-to-login" styleClass="large-button" value="Back to login" action="#{registerController.backToLogin}" immediate="true" ajax="false"/>        	
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
+

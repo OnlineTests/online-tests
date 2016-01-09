@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Welcome to Online Testing</title>
+	<link rel="stylesheet" href="css/style.css" />
+</h:head>
+<h:body>
+	<div class="form-module">
+		<h:form id="login">
+			<p:messages id="msgs" />
+			<h:panelGrid columns="3" rowClasses="center" cellpadding="5">
+				<h:outputLabel for="username" value="Username: " />
+				<p:inputText id="username" value="#{loginController.username}"
+					required="true" label="Username">
+					<p:ajax event="blur" update="usernameMsg" />
+				</p:inputText>
+				<p:message id="usernameMsg" for="username" display="icon" />
+
+				<h:outputLabel for="password" value="Password: " />
+				<p:inputText id="password" value="#{loginController.password}"
+					type="password" required="true" label="Password">
+					<p:ajax event="blur" update="passwordMsg" />
+				</p:inputText>
+				<p:message id="passwordMsg" for="password" display="icon" />
+			</h:panelGrid>
+			<h:panelGrid columns="2" cellspacing="25" cellpadding="20">
+				<p:commandButton id="login" styleClass="login-button" value="Login" action="#{loginController.login}" ajax="false"/>
+				<p:commandButton id="reset" value="Reset" process="@this" update="login">
+					<p:resetInput target="login"/>
+				</p:commandButton>
+			</h:panelGrid>
+		</h:form>
+		<p:separator />
+		<h:form id="register-link">
+			<p:commandLink action="#{loginController.initiateRegister}" ajax="false">
+				<h:outputText value="Do you want to create account?" />
+			</p:commandLink>
+		</h:form>
+	</div>
+</h:body>
+</html>
+

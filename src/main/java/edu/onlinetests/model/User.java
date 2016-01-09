@@ -21,13 +21,13 @@ public class User implements Serializable {
 	private int userId;
 
 	@Column(nullable=false, length=50)
-	private String age;
+	private Integer age;
 
 	@Column(nullable=false, length=50)
 	private String email;
 
 	@Column(nullable=false, length=1)
-	private String gender;
+	private Gender gender;
 
 	@Column(nullable=false, length=50)
 	private String name;
@@ -40,7 +40,7 @@ public class User implements Serializable {
 
 	//bi-directional many-to-one association to Test_Result
 	@OneToMany(mappedBy="user")
-	private List<Test_Result> testResults;
+	private List<TestResult> testResults;
 
 	public User() {
 	}
@@ -53,11 +53,11 @@ public class User implements Serializable {
 		this.userId = userId;
 	}
 
-	public String getAge() {
+	public Integer getAge() {
 		return this.age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -69,11 +69,14 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public String getGender() {
+	public Gender getGender() {
 		return this.gender;
 	}
 
 	public void setGender(String gender) {
+		this.gender = Gender.valueOf(gender);
+	}
+	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 
@@ -101,22 +104,22 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
-	public List<Test_Result> getTestResults() {
+	public List<TestResult> getTestResults() {
 		return this.testResults;
 	}
 
-	public void setTestResults(List<Test_Result> testResults) {
+	public void setTestResults(List<TestResult> testResults) {
 		this.testResults = testResults;
 	}
 
-	public Test_Result addTestResult(Test_Result testResult) {
+	public TestResult addTestResult(TestResult testResult) {
 		getTestResults().add(testResult);
 		testResult.setUser(this);
 
 		return testResult;
 	}
 
-	public Test_Result removeTestResult(Test_Result testResult) {
+	public TestResult removeTestResult(TestResult testResult) {
 		getTestResults().remove(testResult);
 		testResult.setUser(null);
 

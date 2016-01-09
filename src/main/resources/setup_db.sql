@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `Question_Statistic` (`statisticId` int(11) NOT NULL 
 --
 -- Table structure for table `User`
 --
-CREATE TABLE IF NOT EXISTS `User` (`userId` int(11) NOT NULL AUTO_INCREMENT, `username` varchar(50) CHARACTER SET utf8 NOT NULL, `password` varchar(50) CHARACTER SET utf8 NOT NULL, `name` varchar(50) CHARACTER SET utf8 NOT NULL, `age` varchar(50) CHARACTER SET utf8 NOT NULL, `email` varchar(50) CHARACTER SET utf8 NOT NULL, `gender` enum('M','F') NOT NULL, PRIMARY KEY (`userId`), UNIQUE KEY `username` (`username`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+CREATE TABLE IF NOT EXISTS `User` (`userId` int(11) NOT NULL AUTO_INCREMENT, `username` varchar(50) CHARACTER SET utf8 NOT NULL, `password` varchar(50) CHARACTER SET utf8 NOT NULL, `name` varchar(50) CHARACTER SET utf8 NOT NULL, `age` int(11) NOT NULL, `email` varchar(50) CHARACTER SET utf8 NOT NULL, `gender` enum('M','F') NOT NULL, PRIMARY KEY (`userId`), UNIQUE KEY `username` (`username`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 --
 -- Table structure for table `Test_Result`
 --
