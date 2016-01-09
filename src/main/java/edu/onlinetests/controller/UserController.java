@@ -22,8 +22,10 @@ public class UserController {
 	private String password;
 	
 	public String login() {
-		User user = new User();
-		user.setUsername(username);
+		User user = null;
+		if(username!=null && password!=null) {
+			user = userService.login(username, password);
+		}
 		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 		session.put("user", user);
 		return Pages.MAIN_PAGE;

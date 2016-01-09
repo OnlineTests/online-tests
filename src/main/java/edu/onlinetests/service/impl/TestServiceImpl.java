@@ -1,0 +1,38 @@
+package edu.onlinetests.service.impl;
+
+import java.util.SortedSet;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import edu.onlinetests.model.Category;
+import edu.onlinetests.model.TestResult;
+import edu.onlinetests.model.User;
+import edu.onlinetests.persistance.TestDAO;
+import edu.onlinetests.service.TestService;
+
+public class TestServiceImpl implements TestService {
+
+	private TestDAO testDAO;
+	
+	@Autowired
+	public TestServiceImpl(TestDAO testDAO) {
+		this.testDAO = testDAO;
+	}
+	
+	@Override
+	public void storeTestResult(TestResult testResult) {
+		testDAO.storeTestResult(testResult);
+		
+	}
+
+	@Override
+	public SortedSet<TestResult> getBestResultsOfCategory(Category category) {
+		return testDAO.getBestResultsOfCategory(category);
+	}
+
+	@Override
+	public SortedSet<TestResult> getOwnResults(User user) {
+		return testDAO.getOwnResults(user);
+	}
+
+}

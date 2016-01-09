@@ -5,7 +5,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import edu.onlinetests.model.Gender;
+import edu.onlinetests.model.User;
 import edu.onlinetests.model.builder.UserBuilder;
+import edu.onlinetests.service.UserService;
 import edu.onlinetests.view.Pages;
 
 @ManagedBean(name = "registerController")
@@ -15,6 +17,8 @@ public class RegisterController {
 	@ManagedProperty(value = "#{sessionController}")
 	private SessionController sessionController;
 	
+	@ManagedProperty(value = "#{userService}")
+	private UserService userService;
 	
 	private String age;
 	private String email;
@@ -24,14 +28,15 @@ public class RegisterController {
 	private String username;
 	
 	public String register() {
-		sessionController.setUser(UserBuilder.getBuilder()
+		User user = UserBuilder.getBuilder()
 			.setAge(Integer.parseInt(age))
 			.setEmail(email)
 			.setGender(Gender.valueOf(gender))
 			.setName(name)
 			.setUsername(username)
 			.setPassword(password)
-			.build());
+			.build();
+		userService.register(user);
 		return Pages.MAIN_PAGE;
 	}
 	
