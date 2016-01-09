@@ -35,9 +35,8 @@ public class PropertiesProvider {
 	
 	public static Map<String, String> propertiesToMap(Properties properties) {
 		Map<String, String> propertiesMap = new HashMap<String, String>();
-		for (Entry<Object, Object> property : properties.entrySet()) {
-			propertiesMap.put((String)property.getKey(), (String)property.getValue());
-		}
+		propertiesMap.put("javax.persistence.jdbc.user", properties.getProperty("user"));
+		propertiesMap.put("javax.persistence.jdbc.password", properties.getProperty("password"));
 		return propertiesMap;
 	}
 	

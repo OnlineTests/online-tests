@@ -16,7 +16,7 @@ import edu.onlinetests.utils.PropertiesProvider;
 @Service
 public class PersistanceManager {
 	
-	  private static final String CREDENTIALS_PATH = "local.properties";
+	  private static final String CREDENTIALS_PATH = "credentials.properties";
 	  private EntityManagerFactory emFactory;
 
 	  @PostConstruct

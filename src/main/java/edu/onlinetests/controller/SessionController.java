@@ -21,9 +21,6 @@ public class SessionController {
 		this.user = user;
 	}
 	
-	public String logout() {
-		//FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/../login?faces-redirect=true";
-	}
+	
 	
 }
