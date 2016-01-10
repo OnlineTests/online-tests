@@ -1,6 +1,5 @@
 package edu.onlinetests.model.builder;
 
-import edu.onlinetests.model.Gender;
 import edu.onlinetests.model.User;
 
 public abstract class UserBuilder {
@@ -13,7 +12,7 @@ public abstract class UserBuilder {
 	public abstract UserBuilder setPassword(String password);
 	public abstract UserBuilder setEmail(String email);
 	public abstract UserBuilder setName(String name);
-	public abstract UserBuilder setGender(Gender gender);
+	public abstract UserBuilder setGender(String gender);
 	public abstract User build();
 	
 }

@@ -4,12 +4,33 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Welcome to Online Testing</title>
-	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/main.css" />
 </h:head>
 <h:body>
-	<h:form>
+	<h:form id="main">
 		<p:outputLabel value="Hello #{user.username}!"/>
-		<p:commandButton style="float: right;" ajax="false" value="Logout" icon="ui-icon-extlink" action="#{userController.logout}"/>
+		<div id="allthethings">
+			<div id="quiz" onclick="document.getElementById('main:quizButton').click();">
+				<p>Take Quiz</p>
+				<p:commandButton id="quizButton" action="#{quizController.initiateQuiz}" ajax="false"></p:commandButton>
+			</div>
+		    <div id="statistics" onclick="document.getElementById('main:quizButton').click();">
+		    	<p>Statistics</p>
+		    	<p:commandButton id="statisticsButton"></p:commandButton>
+		    </div>
+		    <div id="own" onclick="document.getElementById('main:quizButton').click();">
+		    	<p>View Own Results</p>
+		    	<p:commandButton id="ownButton"></p:commandButton>
+		    </div>
+		    <div id="category" onclick="document.getElementById('main:quizButton').click();">
+		    	<p>View Category Results</p>
+		    	<p:commandButton id="categoryButton"></p:commandButton>
+		    </div>
+		    <div id="exit" onclick="document.getElementById('main:logout').click();">
+		    	<p:commandButton id="logout" ajax="false" action="#{userController.logout}"/>
+		    </div>
+		    <div id="circle"></div>
+		</div>
 	</h:form>
 </h:body>
 </html>

@@ -9,7 +9,7 @@ import edu.onlinetests.model.Category;
 import edu.onlinetests.persistance.CategoryDAO;
 import edu.onlinetests.service.CategoryService;
 
-@Component
+//@Component
 public class CategoryServiceImpl implements CategoryService{
 
 	private CategoryDAO categoryDAO;

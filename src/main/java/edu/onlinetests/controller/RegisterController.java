@@ -4,7 +4,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
-import edu.onlinetests.model.Gender;
 import edu.onlinetests.model.User;
 import edu.onlinetests.model.builder.UserBuilder;
 import edu.onlinetests.service.UserService;
@@ -31,7 +30,7 @@ public class RegisterController {
 		User user = UserBuilder.getBuilder()
 			.setAge(Integer.parseInt(age))
 			.setEmail(email)
-			.setGender(Gender.valueOf(gender))
+			.setGender(gender)
 			.setName(name)
 			.setUsername(username)
 			.setPassword(password)

@@ -38,7 +38,7 @@ class UserBuilderImpl extends UserBuilder {
 	}
 
 	@Override
-	public UserBuilder setGender(Gender gender) {
+	public UserBuilder setGender(String gender) {
 		user.setGender(gender);
 		return this;
 	}

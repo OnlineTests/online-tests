@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.User;
 import edu.onlinetests.persistance.UserDAO;
-import edu.onlinetests.service.*;
+import edu.onlinetests.service.UserService;
 
 @Component
 public class UserServiceImpl implements UserService {
