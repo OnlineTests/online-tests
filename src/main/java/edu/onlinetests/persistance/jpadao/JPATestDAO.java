@@ -1,8 +1,14 @@
 package edu.onlinetests.persistance.jpadao;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,17 +36,33 @@ public class JPATestDAO implements TestDAO {
 
 	@Override
 	public void storeTestResult(TestResult testResult) {
-		
+		EntityManager em = persistanceManager.getEntityManager();
+		if (testResult!=null){
+			em.persist(testResult);
+		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public SortedSet<TestResult> getBestResultsOfCategory(Category category) {
-		return null;
+		Query query = currentEntityManager().createQuery("select  s from TestResult s where s.category=:category limit 10");
+		query.setParameter("category",category); 
+		
+		List<TestResult> list = query.getResultList();
+		TreeSet <TestResult> set = (TreeSet <TestResult>) (list.isEmpty() ? new TreeSet <>() : new TreeSet <>(list));
+		return set;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public SortedSet<TestResult> getOwnResults(User user) {
-		return null;
+		Query query = currentEntityManager().createQuery("select  s from TestResult s where s.user=:user ");
+		query.setParameter("user",user); 
+		
+		List<TestResult> list = query.getResultList();
+		TreeSet <TestResult> set = (TreeSet <TestResult>) (list.isEmpty() ? new TreeSet <>() : new TreeSet <>(list));
+		return set;
+		
 	}
 
 	

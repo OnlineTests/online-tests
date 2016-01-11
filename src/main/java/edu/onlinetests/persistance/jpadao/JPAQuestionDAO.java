@@ -32,8 +32,8 @@ public class JPAQuestionDAO implements QuestionDAO {
 	@Override
 	public List<Question> getQuestionsOfCategory(Category category) {
 		Query query = currentEntityManager().createQuery("select q from Question q where q.category=:category");
-		query.setParameter("category", category);
-		return query.getResultList();
+		query.setParameter("category", category);  
+		return query.getResultList();  
 	}
 
 	
