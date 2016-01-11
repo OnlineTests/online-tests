@@ -27,25 +27,15 @@ public class JPAQuestionStatisticDAO implements QuestionStatisticDAO {
 		this.persistanceManager = persistanceManager;
 	}
 	
-	private EntityManager currentEntityManager() {
-		return persistanceManager.getEntityManager();
-	}
-
-	
-
-	
-
 	@Override
 	public void storeQuestionStatistics(
 			List<QuestionStatistic> questionStatistics) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Map<Question, QuestionStatistic> getQuestionStatisticsOfCategory(
 			Category category) {
-		// TODO Auto-generated method stub
 		return null;
 		//Map<Question, QuestionStatistic> questionStatisticOfCategories =   (Map<Question, QuestionStatistic>) currentEntityManager().createQuery("select qs from QuestionStatistic qs where qs.category=:category");
 		//return questionStatisticOfCategories;

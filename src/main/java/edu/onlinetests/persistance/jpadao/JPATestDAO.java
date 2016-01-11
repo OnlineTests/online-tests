@@ -30,19 +30,16 @@ public class JPATestDAO implements TestDAO {
 
 	@Override
 	public void storeTestResult(TestResult testResult) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public SortedSet<TestResult> getBestResultsOfCategory(Category category) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public SortedSet<TestResult> getOwnResults(User user) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -1,6 +1,5 @@
 package edu.onlinetests.persistance.jpadao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.Category;
-import edu.onlinetests.model.User;
 import edu.onlinetests.persistance.CategoryDAO;
 import edu.onlinetests.persistance.PersistanceManager;
 
@@ -24,15 +22,10 @@ public class JPACategoryDAO implements CategoryDAO {
 		this.persistanceManager = persistanceManager;
 	}
 	
-	private EntityManager currentEntityManager() {
-		return persistanceManager.getEntityManager();
-	}
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> getTestCategories()  {
 		EntityManager em = persistanceManager.getEntityManager();
-		TypedQuery<Category> query =em.createNamedQuery("Category.findAll", Category.class);
+		TypedQuery<Category> query = em.createNamedQuery("Category.findAll", Category.class);
 	    List<Category> results = query.getResultList();
 		return results;
 	}

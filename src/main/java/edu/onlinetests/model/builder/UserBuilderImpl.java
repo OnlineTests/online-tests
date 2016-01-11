@@ -1,6 +1,5 @@
 package edu.onlinetests.model.builder;
 
-import edu.onlinetests.model.Gender;
 import edu.onlinetests.model.User;
 
 class UserBuilderImpl extends UserBuilder {
