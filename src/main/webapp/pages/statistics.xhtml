@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Statistics</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/back.css" />
+</h:head>
+<h:body>
+	<h:form id="back" styleClass="back-div"> 
+		<p:commandButton value="Back to main" styleClass="back-button" id="backButton" ajax="false" action="#{quizController.back}">
+		</p:commandButton>
+	</h:form>
+	<p:tabView>
+		<c:forEach items="#{statisticsController.categories}" var="category">
+			<p:tab title="#{category.name}">
+				<p:dataTable value="#{category.questions}" var="question">
+					<p:column headerText="Question">
+						#{question.question}
+					</p:column>
+					<p:column headerText="Answer A">
+						#{question.answerA}
+					</p:column>
+					<p:column  headerText="Answer B">
+						#{question.answerB}
+					</p:column>
+					<p:column  headerText="Answer C">
+						#{question.answerC}
+					</p:column>
+					<p:column headerText="Answer D">
+						#{question.answerD}
+					</p:column>
+				</p:dataTable>
+			</p:tab>
+		</c:forEach>
+	</p:tabView>
+</h:body>
+</html>
+
