@@ -29,7 +29,4 @@ public class JPACategoryDAO implements CategoryDAO {
 	    List<Category> results = query.getResultList();
 		return results;
 	}
-
-	
-
 }
