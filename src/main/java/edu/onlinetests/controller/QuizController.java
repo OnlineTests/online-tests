@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.Question;
 import edu.onlinetests.model.TestResult;
-import edu.onlinetests.model.builder.TestResultBuilder;
 import edu.onlinetests.service.CategoryService;
 import edu.onlinetests.service.QuestionService;
+import edu.onlinetests.service.TestService;
 import edu.onlinetests.view.Pages;
 
 @ManagedBean(name = "quizController")
@@ -31,6 +31,8 @@ public class QuizController {
 	private Question currentQuestion;
 	private String answer;
 	private TestResult testResult;
+	private String score;
+	private int correctAnswersNumber;
 	private int questionsNumber;
 	
 	private int questionIndex;
@@ -41,6 +43,8 @@ public class QuizController {
 	private CategoryService categoryService;
 	@Autowired
 	private QuestionService questionService;
+	@Autowired
+	private TestService testService;
 	
 	public String initiateQuiz() {
 		categories = categoryService.getTestCategories();
@@ -71,9 +75,14 @@ public class QuizController {
 			currentQuestion = questions.get(questionIndex);
 			return null;
 		} else {
-			testResult = TestResultBuilder.getBuilder().setScore(1).build();
+			prepareScoreForDisplay();
 			return Pages.FINISHED_PAGE;
 		}
+	}
+
+	private void prepareScoreForDisplay() {
+		correctAnswersNumber = testService.evaluateTest(answersForQuestions, categoriesByName.get(selectedCategory));
+		score = String.format("%2.2f", 100.0*(float)correctAnswersNumber / (float)questionsNumber);
 	}
 	
 	public String back() {
@@ -150,5 +159,29 @@ public class QuizController {
 
 	public void setQuestionsNumber(int questionsNumber) {
 		this.questionsNumber = questionsNumber;
+	}
+
+	public TestService getTestService() {
+		return testService;
+	}
+
+	public void setTestService(TestService testService) {
+		this.testService = testService;
+	}
+
+	public String getScore() {
+		return score;
+	}
+
+	public void setScore(String score) {
+		this.score = score;
+	}
+
+	public int getCorrectAnswersNumber() {
+		return correctAnswersNumber;
+	}
+
+	public void setCorrectAnswersNumber(int correctAnswersNumber) {
+		this.correctAnswersNumber = correctAnswersNumber;
 	}
 }

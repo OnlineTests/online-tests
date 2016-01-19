@@ -1,6 +1,5 @@
 package edu.onlinetests.persistance.jpadao;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,24 +22,20 @@ import edu.onlinetests.persistance.QuestionStatisticDAO;
 public class JPAQuestionStatisticDAO implements QuestionStatisticDAO {
 
 	private PersistanceManager persistanceManager;
-	
-	
-	
+
 	@Autowired
 	public JPAQuestionStatisticDAO(PersistanceManager persistanceManager) {
 		this.persistanceManager = persistanceManager;
 	}
-	
+
 	private EntityManager currentEntityManager() {
 		return persistanceManager.getEntityManager();
 	}
 
-	
 	@Override
-	public void storeQuestionStatistics(
-			List<QuestionStatistic> questionStatistics) {
+	public void storeQuestionStatistics(List<QuestionStatistic> questionStatistics) {
 		EntityManager em = persistanceManager.getEntityManager();
-		if (questionStatistics!=null){
+		if (questionStatistics != null) {
 			em.persist(questionStatistics);
 		}
 	}
@@ -49,16 +44,17 @@ public class JPAQuestionStatisticDAO implements QuestionStatisticDAO {
 	@Override
 	public Map<Question, QuestionStatistic> getQuestionStatisticsOfCategory(
 			Category category) {
-		Query query = currentEntityManager().createQuery("select qs from QuestionStatistic qs where qs.category=:category ");
-		query.setParameter("category",category); 
-		
+		Query query = currentEntityManager()
+				.createQuery(
+						"select qs from QuestionStatistic qs where qs.question.category=:category ");
+		query.setParameter("category", category);
+
 		List<QuestionStatistic> list = query.getResultList();
-		
-		Map<Question,QuestionStatistic> map = new HashMap<Question,QuestionStatistic>();
-		for (QuestionStatistic qs : list) map.put(qs.getQuestion(), qs);
+
+		Map<Question, QuestionStatistic> map = new HashMap<Question, QuestionStatistic>();
+		for (QuestionStatistic qs : list)
+			map.put(qs.getQuestion(), qs);
 		return map;
 	}
-
-	
 
 }

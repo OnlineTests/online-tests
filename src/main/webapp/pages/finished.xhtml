@@ -8,7 +8,7 @@
 </h:head>
 <h:body>
 	<h:form id="finished">
-		<h2>Your score is: #{quizController.testResult.score / quizController.questionsNumber * 100}% (#{quizController.testResult.score}/#{quizController.questionsNumber})</h2>
+		<h2>Your score is: #{quizController.score}% (#{quizController.correctAnswersNumber}/#{quizController.questionsNumber})</h2>
 		<p:commandButton value="Finish" action="#{quizController.back}"></p:commandButton>
 	</h:form>
 </h:body>

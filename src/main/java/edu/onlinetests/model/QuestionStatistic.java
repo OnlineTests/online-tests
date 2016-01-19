@@ -30,6 +30,9 @@ public class QuestionStatistic implements Serializable {
 	@Column(nullable=false)
 	private int answerD;
 
+	@Column(nullable=false)
+	private int answerNumber;
+
 	//bi-directional one-to-one association to Question
 	@OneToOne(mappedBy="questionStatistic")
 	private Question question;

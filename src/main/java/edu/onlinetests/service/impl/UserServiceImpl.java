@@ -11,7 +11,9 @@ import edu.onlinetests.service.UserService;
 public class UserServiceImpl implements UserService {
 	
 	private UserDAO userDAO;
+	private User user;
 	
+
 	@Autowired
 	public UserServiceImpl(UserDAO userDAO) {
 		this.userDAO = userDAO;
@@ -19,12 +21,18 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public User login(String username, String password) {
-		return userDAO.login(username, password);
+		user = userDAO.login(username, password);
+		return user;
 	}
 
 	@Override
 	public User register(User user) {
-		return userDAO.register(user);
+		this.user = userDAO.register(user);
+		return user;
 	}
 
+	@Override
+	public User getCurrentUser() {
+		return user;
+	}
 }

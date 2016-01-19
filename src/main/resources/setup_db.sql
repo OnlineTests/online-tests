@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `Question` (`questionId` int(11) NOT NULL AUTO_INCREM
 --
 -- Table structure for table `Question_Statistic`
 --
-CREATE TABLE IF NOT EXISTS `Question_Statistic` (`statisticId` int(11) NOT NULL AUTO_INCREMENT, `questionId` int(11) NOT NULL, `answerA` int(2) NOT NULL, `answerB` int(2) NOT NULL, `answerC` int(2) NOT NULL, `answerD` int(2) NOT NULL, PRIMARY KEY (`statisticId`), UNIQUE KEY `questionId` (`questionId`), CONSTRAINT `FK_Question_Statistic_Question` FOREIGN KEY (`questionId`) REFERENCES `Question` (`questionId`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `Question_Statistic` (`statisticId` int(11) NOT NULL AUTO_INCREMENT, `questionId` int(11) NOT NULL, `answerA` int(2) NOT NULL, `answerB` int(2) NOT NULL, `answerC` int(2) NOT NULL, `answerD` int(2) NOT NULL, `answerNumber` int(11) NOT NULL,PRIMARY KEY (`statisticId`), UNIQUE KEY `questionId` (`questionId`), CONSTRAINT `FK_Question_Statistic_Question` FOREIGN KEY (`questionId`) REFERENCES `Question` (`questionId`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 --
 -- Table structure for table `User`
 --
