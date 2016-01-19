@@ -5,28 +5,57 @@
 <h:head>
 	<title>Quiz</title>
 	<link rel="stylesheet" href="../css/style.css" />
+	<link rel="stylesheet" href="../css/back.css" />
 	<script>
 		$(document).ready(function(){
-		    $("#start\\:startButton").click(function(){
-		        $('#start').css("display", "none");
-		        $('#end').css("display", "block")
+		    $("#main\\:startButton").click(function(){
+		        $('#main\\:start').css("display", "none");
+		        $('#main\\:end').css("display", "block");
+		        $('#main\\:quiz').css("display", "block");
+		    });
+		    $("#main\\:endButton").click(function(){
+		    	$('#main\\:start').css("display", "block");
+		    	$('#main\\:end').css("display", "none");
+		    	$('#main\\:quiz').css("display", "none");
 		    });
 		});
 	</script>
 </h:head>
 <h:body>
-	<h:form id="end">
-		<p:commandButton value="End Quiz" ajax="false"/>
+	<h:form id="back" styleClass="back-div"> 
+		<p:commandButton value="Back to main" styleClass="back-button" id="backButton" ajax="false" action="#{quizController.back}">
+		</p:commandButton>
 	</h:form>
-	<h:form id="start">
-		<h:panelGrid columns="4" cellspacing="5">
-	        <h:outputLabel for="categories" value="Category:" />
-	        <p:selectOneMenu id="categories" value="#{quizController.selectedCategory}" label="Categories"
-	                              filter="true" filterMatchMode="startsWith">
-	            <f:selectItems value="#{quizController.categories}" />
-	        </p:selectOneMenu>
-	        <p:commandButton id="startButton" value="Start Quiz" ajax="true"/>
-	    </h:panelGrid>
+	<h:form id="main">
+		<h:panelGrid id="start" columns="1">
+			<h:panelGrid columns="4" cellspacing="5">
+		        <h:outputLabel for="categories" value="Category:" />
+		        <p:selectOneMenu id="categories" value="#{quizController.selectedCategory}" label="Categories">
+		        	<p:ajax event="change" update="@this"></p:ajax>
+		            <f:selectItems value="#{quizController.categories}" var="category" itemLabel="#{category.name}" itemValue="#{category}"/>
+		        </p:selectOneMenu>
+		        <p:commandButton id="startButton" value="Start Quiz" ajax="true" action="#{quizController.startQuiz}" process="@this" update="main:question main:answer"/>
+		    </h:panelGrid>
+		</h:panelGrid>
+		<h:panelGrid id="quiz" columns="1">
+			<p:outputLabel id="question" value="#{quizController.currentQuestion.question}"/>
+	        <p:outputLabel for="answer" value="Answer:" />
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+		        <p:selectOneRadio id="answer" value="#{quizController.answer}" layout="grid" columns="1">
+		        	<f:selectItem id="default" itemLabel="default" itemValue="default"></f:selectItem>
+		            <f:selectItem itemLabel="#{quizController.currentQuestion.answerA}" itemValue="A"></f:selectItem>
+		            <f:selectItem itemLabel="#{quizController.currentQuestion.answerB}" itemValue="B"></f:selectItem>
+		            <f:selectItem itemLabel="#{quizController.currentQuestion.answerC}" itemValue="C"></f:selectItem>
+		            <f:selectItem itemLabel="#{quizController.currentQuestion.answerD}" itemValue="D"></f:selectItem>
+		            <p:ajax event="change" update="@this"></p:ajax>
+		        </p:selectOneRadio>
+		    </h:panelGrid>
+			<h:panelGrid columns="2">
+				<p:commandButton id="nextButton" value="Next" ajax="true" action="#{quizController.nextQuestion}" process="@this" update="main:question main:answer">
+				</p:commandButton>
+				<p:commandButton id="endButton" value="End Quiz" ajax="true"/>
+			</h:panelGrid>
+		</h:panelGrid>
 	</h:form>
 </h:body>
 </html>

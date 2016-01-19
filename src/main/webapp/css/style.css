@@ -7,16 +7,36 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-#start {
+#finished {
+	position: absolute;
+	left: 500px;
+	top: 200px;
+}
+
+#main\:quiz {
+	display: none;
+	position: absolute;
+	left: 500px;
+	top: 200px;
+	font-size: 1.5em;
+}
+
+#main\:answer {
+	font-size: 1.5em;
+}
+
+#main\:start {
 	position: absolute;
 	left: 500px;
 	top: 300px;
 }
 
-#end {
+#main\:end {
 	display: none;
-	position: absolute;
-	left: 500px;
+}
+
+#main\:answer tr:FIRST-CHILD {
+	display: none;
 }
 
 #login td {
