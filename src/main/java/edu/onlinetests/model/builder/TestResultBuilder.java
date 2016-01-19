@@ -5,8 +5,8 @@ import edu.onlinetests.model.TestResult;
 import edu.onlinetests.model.User;
 
 public abstract class TestResultBuilder {
-	public static UserBuilder getBuilder() {
-		return new UserBuilderImpl();
+	public static TestResultBuilder getBuilder() {
+		return new TestResultBuilderImpl();
 	}
 	public abstract TestResultBuilder setScore(int score);
 	public abstract TestResultBuilder setUser(User user);
