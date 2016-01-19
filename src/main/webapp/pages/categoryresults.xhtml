@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Category Results</title>
+	<link rel="stylesheet" href="../css/style.css" />
+	<script>
+	</script>
+</h:head>
+<h:body>
+	<h:form id="results">
+		<h:panelGrid columns="4" cellspacing="5">
+			<p:tabMenu activeIndex="#{categoryResultsController.i}">
+			    <p:menuitem value="#{categoryResultsController.categories}" outcome="/ui/menu/tabMenu" icon="ui-icon-star">
+			<!--         <f:param name="i" value="0" /> -->
+			    </p:menuitem>
+			</p:tabMenu>
+	    </h:panelGrid>
+	</h:form>
+</h:body>
+</html>
+

@@ -1,6 +1,6 @@
 package edu.onlinetests.persistance;
 
-import java.util.SortedSet;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import edu.onlinetests.model.User;
 public interface TestDAO {
 
 	void storeTestResult(TestResult testResult);
-	SortedSet<TestResult> getBestResultsOfCategory(Category category);
-	SortedSet<TestResult> getOwnResults(User user);
+	Set<TestResult> getBestResultsOfCategory(Category category);
+	Set<TestResult> getOwnResults(User user);
 	
 }

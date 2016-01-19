@@ -8,7 +8,6 @@ import java.util.TreeSet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -44,24 +43,24 @@ public class JPATestDAO implements TestDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public SortedSet<TestResult> getBestResultsOfCategory(Category category) {
-		Query query = currentEntityManager().createQuery("select  s from TestResult s where s.category=:category limit 10");
+	public Set<TestResult> getBestResultsOfCategory(Category category) {
+		Query query = currentEntityManager().createQuery("select s from TestResult s where s.category=:category limit 10 order by s.score");
 		query.setParameter("category",category); 
 		
 		List<TestResult> list = query.getResultList();
-		TreeSet <TestResult> set = (TreeSet <TestResult>) (list.isEmpty() ? new TreeSet <>() : new TreeSet <>(list));
-		return set;
+		Set<TestResult> result = new HashSet<TestResult>(list);
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public SortedSet<TestResult> getOwnResults(User user) {
-		Query query = currentEntityManager().createQuery("select  s from TestResult s where s.user=:user ");
+	public Set<TestResult> getOwnResults(User user) {
+		Query query = currentEntityManager().createQuery("select s from TestResult s where s.user=:user order by s.score");
 		query.setParameter("user",user); 
 		
 		List<TestResult> list = query.getResultList();
-		TreeSet <TestResult> set = (TreeSet <TestResult>) (list.isEmpty() ? new TreeSet <>() : new TreeSet <>(list));
-		return set;
+		Set<TestResult> result = new HashSet<TestResult>(list);
+		return result;
 		
 	}
 

@@ -22,9 +22,9 @@
 		    	<p>View Own Results</p>
 		    	<p:commandButton id="ownButton"></p:commandButton>
 		    </div>
-		    <div id="category" onclick="document.getElementById('main:quizButton').click();">
+		    <div id="category" onclick="document.getElementById('main:categoryButton').click();">
 		    	<p>View Category Results</p>
-		    	<p:commandButton id="categoryButton"></p:commandButton>
+		    	<p:commandButton id="categoryButton" action="#{categoryResultsController.populateCategories}" ajax="false"></p:commandButton>
 		    </div>
 		    <div id="exit" onclick="document.getElementById('main:logout').click();">
 		    	<p:commandButton id="logout" ajax="false" action="#{userController.logout}"/>
