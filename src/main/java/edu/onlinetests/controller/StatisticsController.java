@@ -27,7 +27,7 @@ public class StatisticsController {
 	private Map<Question, QuestionStatisticDTO> statisticByQuestion;
 	
 	public String initiateStatistics() {
-		categories = categoryService.getTestCategories();
+		categories = categoryService.getCategories();
 		statisticByQuestion = new HashMap<Question, QuestionStatisticDTO>();
 		for (Category category : categories) {
 			for (Question question : category.getQuestions()) {

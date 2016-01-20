@@ -20,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService{
 	}
 
 	@Override
-	public List<Category> getTestCategories() {
-		return categoryDAO.getTestCategories();
+	public List<Category> getCategories() {
+		return categoryDAO.getCategories();
 	}
 }

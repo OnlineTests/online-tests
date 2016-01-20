@@ -23,10 +23,11 @@ public class JPACategoryDAO implements CategoryDAO {
 	}
 	
 	@Override
-	public List<Category> getTestCategories()  {
+	public List<Category> getCategories()  {
 		EntityManager em = persistanceManager.getEntityManager();
 		TypedQuery<Category> query = em.createNamedQuery("Category.findAll", Category.class);
 	    List<Category> results = query.getResultList();
+	    em.close();
 		return results;
 	}
 }

@@ -27,10 +27,6 @@ public class JPATestDAO implements TestDAO {
 		this.persistanceManager = persistanceManager;
 	}
 	
-	private EntityManager currentEntityManager() {
-		return persistanceManager.getEntityManager();
-	}
-
 	@Override
 	public void storeTestResult(TestResult testResult) {
 		EntityManager em = persistanceManager.getEntityManager();
@@ -45,22 +41,24 @@ public class JPATestDAO implements TestDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<TestResult> getBestResultsOfCategory(Category category) {
-		Query query = currentEntityManager().createQuery("select s from TestResult s where s.category=:category limit 10 order by s.score");
+		EntityManager em = persistanceManager.getEntityManager();
+		Query query = em.createQuery("select s from TestResult s where s.category=:category limit 10 order by s.score");
 		query.setParameter("category",category); 
-		
 		List<TestResult> list = query.getResultList();
 		Set<TestResult> result = new HashSet<TestResult>(list);
+		em.close();
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<TestResult> getOwnResults(User user) {
-		Query query = currentEntityManager().createQuery("select s from TestResult s where s.user=:user order by s.score");
+		EntityManager em = persistanceManager.getEntityManager();
+		Query query = em.createQuery("select s from TestResult s where s.user=:user order by s.score");
 		query.setParameter("user",user); 
-		
 		List<TestResult> list = query.getResultList();
 		Set<TestResult> result = new HashSet<TestResult>(list);
+		em.close();
 		return result;
 		
 	}

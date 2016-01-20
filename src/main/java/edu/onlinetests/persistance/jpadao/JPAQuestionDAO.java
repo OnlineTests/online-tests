@@ -24,16 +24,15 @@ public class JPAQuestionDAO implements QuestionDAO {
 		this.persistanceManager = persistanceManager;
 	}
 	
-	private EntityManager currentEntityManager() {
-		return persistanceManager.getEntityManager();
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Question> getQuestionsOfCategory(Category category) {
-		Query query = currentEntityManager().createQuery("select q from Question q where q.category=:category");
-		query.setParameter("category", category);  
-		return query.getResultList();  
+		EntityManager em = persistanceManager.getEntityManager();
+		Query query = em.createQuery("select q from Question q where q.category=:category");
+		query.setParameter("category", category); 
+		List<Question> list = query.getResultList();
+		em.close();
+		return list;  
 	}
 
 	

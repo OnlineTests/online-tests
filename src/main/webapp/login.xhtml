@@ -5,11 +5,21 @@
 <h:head>
 	<title>Welcome to Online Testing</title>
 	<link rel="stylesheet" href="css/style.css" />
+	<script>
+		$(document).ready(function(){
+		    $("#login\\:reset").click(function(){
+		        $('#login\\:username').attr("value", "");
+		        $('#login\\:password').attr("value", "");
+		        $('#login\\:error').text("");
+		    });
+		});
+	</script>
 </h:head>
 <h:body>
 	<div class="form-module">
 		<h:form id="login">
-			<p:messages id="msgs" />
+			<p:outputLabel id="error" value="#{userController.errorMessage}"/>
+			<p:messages id="msgs"/>
 			<h:panelGrid columns="3" rowClasses="center" cellpadding="5">
 				<h:outputLabel for="username" value="Username: " />
 				<p:inputText id="username" value="#{userController.username}"
@@ -26,16 +36,20 @@
 				<p:message id="passwordMsg" for="password" display="icon" />
 			</h:panelGrid>
 			<h:panelGrid columns="2" cellspacing="25" cellpadding="20">
-				<p:commandButton id="login" styleClass="login-button" value="Login" action="#{userController.login}" ajax="false"/>
-				<p:commandButton id="reset" value="Reset" process="@this" update="login">
-					<p:resetInput target="login"/>
-				</p:commandButton>
+				<p:commandButton id="loginButton" styleClass="login-button" value="Login" action="#{userController.login}" ajax="false"/>
+				<p:commandButton id="reset" value="Reset"/>
 			</h:panelGrid>
 		</h:form>
-		<p:separator />
+		<p:separator/>
 		<h:form id="register-link">
 			<p:commandLink action="#{userController.initiateRegister}" ajax="false">
 				<h:outputText value="Do you want to create account?" />
+			</p:commandLink>
+		</h:form>
+		<p:separator/>
+		<h:form id="about">
+			<p:commandLink action="#{aboutController.goToAbout}" ajax="false">
+				<h:outputText value="Technologies used"></h:outputText>
 			</p:commandLink>
 		</h:form>
 	</div>

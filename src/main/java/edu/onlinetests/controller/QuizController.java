@@ -47,7 +47,7 @@ public class QuizController {
 	private TestService testService;
 	
 	public String initiateQuiz() {
-		categories = categoryService.getTestCategories();
+		categories = categoryService.getCategories();
 		categoriesByName = new HashMap<String, Category>();
 		for (Category category : categories) {
 			categoriesByName.put(category.getName(), category);

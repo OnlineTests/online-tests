@@ -7,6 +7,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+#login\:error {
+	color: red;
+}
+
 #finished {
 	position: absolute;
 	left: 500px;

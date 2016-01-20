@@ -47,7 +47,7 @@ public class QuestionStatisticDTO {
 
 	private String getPercentage(int dividend, int divizor) {
 		double rawPercentage = 100.0 * (float) dividend / (float) divizor;
-		return String.format("%2.2f", rawPercentage);
+		return String.format("%2.2f", rawPercentage)+"%";
 	}
 	
 	public String getCorrectAnswer() {

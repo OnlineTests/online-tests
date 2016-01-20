@@ -28,7 +28,7 @@ public class CategoryResultsController {
 	private CategoryService categoryService;
 
 	public String populateCategories() {
-		categories = categoryService.getTestCategories();
+		categories = categoryService.getCategories();
 		return Pages.CATEGORY_RESULTS_PAGE;
 	}
 
