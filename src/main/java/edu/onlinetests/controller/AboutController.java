@@ -21,18 +21,18 @@ public class AboutController {
 	@PostConstruct
 	public void init() {
 		model = new DefaultTagCloudModel();
-		model.addTag(new DefaultTagCloudItem("Java", "#", 10));
-        model.addTag(new DefaultTagCloudItem("Primefaces", "#", 9));
-        model.addTag(new DefaultTagCloudItem("HTML5", "#", 7));
-        model.addTag(new DefaultTagCloudItem("MYSQL", "#", 6));
-        model.addTag(new DefaultTagCloudItem("Maven", "#", 5));
-        model.addTag(new DefaultTagCloudItem("Tomcat", "#", 5));
-        model.addTag(new DefaultTagCloudItem("JPA", "#", 4));
-        model.addTag(new DefaultTagCloudItem("CSS", "#", 4));
-        model.addTag(new DefaultTagCloudItem("Spring", "#", 3));
-        model.addTag(new DefaultTagCloudItem("JSF", "#", 2));
+		model.addTag(new DefaultTagCloudItem("Primefaces", "#", 5));
+		model.addTag(new DefaultTagCloudItem("JDBC", "#", 1));
+		model.addTag(new DefaultTagCloudItem("JPA", "#", 3));
+		model.addTag(new DefaultTagCloudItem("JSF", "#", 1));
+		model.addTag(new DefaultTagCloudItem("Tomcat", "#", 2));
+		model.addTag(new DefaultTagCloudItem("MYSQL", "#", 3));
+		model.addTag(new DefaultTagCloudItem("Java", "#", 5));
+        model.addTag(new DefaultTagCloudItem("CSS", "#", 3));
+        model.addTag(new DefaultTagCloudItem("Spring", "#", 2));
         model.addTag(new DefaultTagCloudItem("Javascript", "#", 2));
-        model.addTag(new DefaultTagCloudItem("JDBC", "#", 1));
+        model.addTag(new DefaultTagCloudItem("Maven", "#", 4));
+        model.addTag(new DefaultTagCloudItem("HTML5", "#", 5));
         model.addTag(new DefaultTagCloudItem("Hibernate", "#", 1));
 	}
 	
@@ -43,5 +43,12 @@ public class AboutController {
 	public String back() {
 		return Pages.MAIN_PAGE;
 	}
-	
+
+	public TagCloudModel getModel() {
+		return model;
+	}
+
+	public void setModel(TagCloudModel model) {
+		this.model = model;
+	}
 }

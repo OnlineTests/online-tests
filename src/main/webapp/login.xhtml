@@ -41,15 +41,15 @@
 			</h:panelGrid>
 		</h:form>
 		<p:separator/>
-		<h:form id="register-link">
+		<h:form id="register-link" styleClass="link">
 			<p:commandLink action="#{userController.initiateRegister}" ajax="false">
-				<h:outputText value="Do you want to create account?" />
+				<h:outputText value="Do you want to create account?"/>
 			</p:commandLink>
 		</h:form>
 		<p:separator/>
-		<h:form id="about">
+		<h:form id="about" styleClass="link">
 			<p:commandLink action="#{aboutController.goToAbout}" ajax="false">
-				<h:outputText value="Technologies used"></h:outputText>
+				<h:outputText value="Technologies used"/>
 			</p:commandLink>
 		</h:form>
 	</div>

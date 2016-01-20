@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>About</title>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/back.css" />
+</h:head>
+<h:body>
+	<h:form id="back" styleClass="back-div"> 
+		<p:commandButton value="Back to login" styleClass="back-button" id="backButton" ajax="false" action="#{aboutController.back}">
+		</p:commandButton>
+	</h:form>
+	<h:form id="technologies">
+		<p:tagCloud styleClass="cloud" model="#{aboutController.model}">
+	    </p:tagCloud>
+	</h:form>
+</h:body>
+</html>
+

@@ -7,6 +7,15 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.cloud {
+	font-size: 2.1em !important;
+	position: absolute;
+	left:400px;
+	top:175px;
+	width: 500px;
+	height: 350px;
+}
+
 #login\:error {
 	color: red;
 }
@@ -47,20 +56,20 @@ body {
 	display: inline-flex;
 }
 
-#register-link a {
+.link a {
 	font-family: Georgia, serif;
 	font-size: large
 }
 
-#register-link a:link {
+.link a:link {
 	color: #33b5e5;
 }
 
-#register-link a:visited {
+.link a:visited {
 	color: #33b5e5;
 }
 
-#register-link a:hover {
+.link a:hover {
 	text-decoration: none;
 	color: #33b5e5;
 	font-weight: bold;
