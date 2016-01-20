@@ -33,6 +33,27 @@
 					<p:column headerText="Answer D">
 						#{question.answerD}
 					</p:column>
+					<p:column headerText="Correct answer">
+						#{statisticsController.statisticByQuestion.get(question).correctAnswer}
+					</p:column>
+					<p:column headerText="Answers number">
+						#{statisticsController.statisticByQuestion.get(question).answersNumber}
+					</p:column>
+					<p:column headerText="Answer A answered">
+						#{statisticsController.statisticByQuestion.get(question).answerAPercentage}%
+					</p:column>
+					<p:column headerText="Answer B answered">
+						#{statisticsController.statisticByQuestion.get(question).answerBPercentage}%
+					</p:column>
+					<p:column headerText="Answer C answered">
+						#{statisticsController.statisticByQuestion.get(question).answerCPercentage}%
+					</p:column>
+					<p:column headerText="Answer D answered">
+						#{statisticsController.statisticByQuestion.get(question).answerDPercentage}%
+					</p:column>
+					<p:column headerText="Correct answer answered">
+						#{statisticsController.statisticByQuestion.get(question).correctAnswerPercentage}%
+					</p:column>
 				</p:dataTable>
 			</p:tab>
 		</c:forEach>

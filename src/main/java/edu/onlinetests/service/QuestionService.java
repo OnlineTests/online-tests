@@ -13,7 +13,6 @@ import edu.onlinetests.model.QuestionStatistic;
 public interface QuestionService {
 
 	List<Question> getQuestionsOfCategory(Category category);
-	void storeQuestionStatistics(List<QuestionStatistic> questionStatistics);
 	Map<Question, QuestionStatistic> getQuestionStatisticsOfCategory(Category category);
 	
 }

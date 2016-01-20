@@ -1,6 +1,7 @@
 package edu.onlinetests.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -34,7 +35,8 @@ public class QuestionStatistic implements Serializable {
 	private int answerNumber;
 
 	//bi-directional one-to-one association to Question
-	@OneToOne(mappedBy="questionStatistic")
+	@OneToOne
+	@JoinColumn(name="questionId", referencedColumnName="questionId", nullable=false, insertable=false, updatable=false)
 	private Question question;
 
 	public QuestionStatistic() {
@@ -86,6 +88,14 @@ public class QuestionStatistic implements Serializable {
 
 	public void setQuestion(Question question) {
 		this.question = question;
+	}
+
+	public int getAnswerNumber() {
+		return answerNumber;
+	}
+
+	public void setAnswerNumber(int answerNumber) {
+		this.answerNumber = answerNumber;
 	}
 
 }

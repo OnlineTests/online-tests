@@ -1,6 +1,6 @@
 package edu.onlinetests.persistance;
 
-import java.util.Map;
+import java.util.Properties;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -18,11 +18,12 @@ public class PersistanceManager {
 	
 	  private static final String CREDENTIALS_PATH = "credentials.properties";
 	  private EntityManagerFactory emFactory;
+	  private Properties credentials;
 
 	  @PostConstruct
 	  private void initialize() {
-		  Map<String, String> credentials = PropertiesProvider.propertiesToMap(PropertiesProvider.getPropertiesFromFile(CREDENTIALS_PATH));
-		  emFactory = Persistence.createEntityManagerFactory("online_tests", credentials);
+		  credentials = PropertiesProvider.getPropertiesFromFile(CREDENTIALS_PATH);
+		  emFactory = Persistence.createEntityManagerFactory("online_tests", PropertiesProvider.propertiesToMap(credentials));
 	  }
 	  
 	  public EntityManager getEntityManager() {
@@ -31,5 +32,9 @@ public class PersistanceManager {
 
 	  public void close() {
 		  emFactory.close();
+	  }
+	  
+	  public Properties getCredentials() {
+		  return credentials;
 	  }
 }

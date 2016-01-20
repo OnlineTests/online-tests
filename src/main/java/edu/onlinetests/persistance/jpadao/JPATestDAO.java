@@ -3,8 +3,6 @@ package edu.onlinetests.persistance.jpadao;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -37,8 +35,11 @@ public class JPATestDAO implements TestDAO {
 	public void storeTestResult(TestResult testResult) {
 		EntityManager em = persistanceManager.getEntityManager();
 		if (testResult!=null){
+			em.getTransaction().begin();
 			em.persist(testResult);
+			em.getTransaction().commit();
 		}
+		em.close();
 	}
 
 	@SuppressWarnings("unchecked")

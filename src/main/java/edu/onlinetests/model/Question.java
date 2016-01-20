@@ -42,10 +42,9 @@ public class Question implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="categoryId", nullable=false)
 	private Category category;
-
-	//bi-directional one-to-one association to Question_Statistic
-	@OneToOne
-	@JoinColumn(name="questionId", referencedColumnName="questionId", nullable=false, insertable=false, updatable=false)
+	
+	//bi-directional one-to-one association to QuestionStatistic
+	@OneToOne(mappedBy="question")
 	private QuestionStatistic questionStatistic;
 
 	public Question() {

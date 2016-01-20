@@ -18,7 +18,7 @@ public class TestResult implements Serializable, Comparable<TestResult> {
 	private TestResultPK id;
 
 	@Column(nullable=false)
-	private int score;
+	private float score;
 
 	//bi-directional many-to-one association to Category
 	@ManyToOne
@@ -41,11 +41,11 @@ public class TestResult implements Serializable, Comparable<TestResult> {
 		this.id = id;
 	}
 
-	public int getScore() {
+	public float getScore() {
 		return this.score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(float score) {
 		this.score = score;
 	}
 
@@ -69,7 +69,7 @@ public class TestResult implements Serializable, Comparable<TestResult> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + score;
+		result = prime * result + (int)score;
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -95,7 +95,7 @@ public class TestResult implements Serializable, Comparable<TestResult> {
 
 	@Override
 	public int compareTo(TestResult o) {
-		return Integer.compare(score, o.getScore());
+		return Float.compare(score, o.getScore());
 	}
 	
 	

@@ -30,12 +30,6 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public void storeQuestionStatistics(List<QuestionStatistic> questionStatistics) {
-		questionStatisticDAO.storeQuestionStatistics(questionStatistics);
-		
-	}
-
-	@Override
 	public Map<Question, QuestionStatistic> getQuestionStatisticsOfCategory(Category category) {
 		return questionStatisticDAO.getQuestionStatisticsOfCategory(category);
 	}
