@@ -31,8 +31,12 @@ public class CategoryResultsController {
 	private CategoryService categoryService;
 
 	public String populateCategories() {
+<<<<<<< HEAD
 		categories = categoryService.getTestCategories();
 		result = testService.getBestResultsOfCategory(categories.get(0));
+=======
+		categories = categoryService.getCategories();
+>>>>>>> bb774217e16bcee16257fc0a60155238fcb77527
 		return Pages.CATEGORY_RESULTS_PAGE;
 	}
 	

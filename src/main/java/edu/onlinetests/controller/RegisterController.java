@@ -1,8 +1,10 @@
 package edu.onlinetests.controller;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.User;
 import edu.onlinetests.model.builder.UserBuilder;
@@ -11,12 +13,10 @@ import edu.onlinetests.view.Pages;
 
 @ManagedBean(name = "registerController")
 @RequestScoped
+@Component
 public class RegisterController {
 
-	@ManagedProperty(value = "#{sessionController}")
-	private SessionController sessionController;
-	
-	@ManagedProperty(value = "#{userService}")
+	@Autowired
 	private UserService userService;
 	
 	private String age;
@@ -43,13 +43,6 @@ public class RegisterController {
 		return Pages.LOGIN_PAGE;
 	}
 	
-	public SessionController getSessionController() {
-		return sessionController;
-	}
-	public void setSessionController(SessionController session) {
-		this.sessionController = session;
-	}
-
 	public String getAge() {
 		return age;
 	}

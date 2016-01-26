@@ -23,15 +23,21 @@ public class UserController {
 
 	private String username;
 	private String password;
+	private String errorMessage;
 	
 	public String login() {
 		User user = null;
 		if(username!=null && password!=null) {
 			user = userService.login(username, password);
 		}
-		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		session.put("user", user);
-		return Pages.MAIN_PAGE;
+		if(user != null) {
+			Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+			session.put("user", user);
+			return Pages.MAIN_PAGE;
+		} else {
+			errorMessage = "Failed authentication! Invalid username or password!";
+			return Pages.LOGIN_PAGE;
+		}
 	}
 
 	public String initiateRegister() {
@@ -62,6 +68,14 @@ public class UserController {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 }

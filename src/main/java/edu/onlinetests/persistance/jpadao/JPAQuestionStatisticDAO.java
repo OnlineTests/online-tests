@@ -3,19 +3,13 @@ package edu.onlinetests.persistance.jpadao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import edu.onlinetests.model.Category;
-import edu.onlinetests.model.Question;
 import edu.onlinetests.model.QuestionStatistic;
 import edu.onlinetests.persistance.PersistanceManager;
 import edu.onlinetests.persistance.QuestionStatisticDAO;
@@ -28,23 +22,6 @@ public class JPAQuestionStatisticDAO implements QuestionStatisticDAO {
 	@Autowired
 	public JPAQuestionStatisticDAO(PersistanceManager persistanceManager) {
 		this.persistanceManager = persistanceManager;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public Map<Question, QuestionStatistic> getQuestionStatisticsOfCategory(
-			Category category) {
-		Query query = persistanceManager.getEntityManager()
-				.createQuery(
-						"select qs from QuestionStatistic qs where qs.question.category=:category ");
-		query.setParameter("category", category);
-
-		List<QuestionStatistic> list = query.getResultList();
-
-		Map<Question, QuestionStatistic> map = new HashMap<Question, QuestionStatistic>();
-		for (QuestionStatistic qs : list)
-			map.put(qs.getQuestion(), qs);
-		return map;
 	}
 
 	@Override

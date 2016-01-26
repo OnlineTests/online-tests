@@ -9,6 +9,6 @@ import edu.onlinetests.model.Category;
 @Repository
 public interface CategoryDAO {
 
-	List<Category> getTestCategories();
+	List<Category> getCategories();
 	
 }

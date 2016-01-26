@@ -27,10 +27,6 @@ public class JPATestDAO implements TestDAO {
 		this.persistanceManager = persistanceManager;
 	}
 	
-	private EntityManager currentEntityManager() {
-		return persistanceManager.getEntityManager();
-	}
-
 	@Override
 	public void storeTestResult(TestResult testResult) {
 		EntityManager em = persistanceManager.getEntityManager();
@@ -44,21 +40,41 @@ public class JPATestDAO implements TestDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+<<<<<<< HEAD
 	public List<TestResult> getBestResultsOfCategory(Category category) {
 		Query query = currentEntityManager().createQuery("select s from TestResult s where s.category=:category order by s.score");
 		query.setParameter("category",category); 
 		query.setMaxResults(10);
 		List<TestResult> result = query.getResultList();
+=======
+	public Set<TestResult> getBestResultsOfCategory(Category category) {
+		EntityManager em = persistanceManager.getEntityManager();
+		Query query = em.createQuery("select s from TestResult s where s.category=:category limit 10 order by s.score");
+		query.setParameter("category",category); 
+		List<TestResult> list = query.getResultList();
+		Set<TestResult> result = new HashSet<TestResult>(list);
+		em.close();
+>>>>>>> bb774217e16bcee16257fc0a60155238fcb77527
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
+<<<<<<< HEAD
 	public List<TestResult> getOwnResults(User user) {
 		Query query = currentEntityManager().createQuery("select s from TestResult s where s.user=:user order by s.score");
 		query.setParameter("user",user); 
 		
 		List<TestResult> result = query.getResultList();
+=======
+	public Set<TestResult> getOwnResults(User user) {
+		EntityManager em = persistanceManager.getEntityManager();
+		Query query = em.createQuery("select s from TestResult s where s.user=:user order by s.score");
+		query.setParameter("user",user); 
+		List<TestResult> list = query.getResultList();
+		Set<TestResult> result = new HashSet<TestResult>(list);
+		em.close();
+>>>>>>> bb774217e16bcee16257fc0a60155238fcb77527
 		return result;
 		
 	}

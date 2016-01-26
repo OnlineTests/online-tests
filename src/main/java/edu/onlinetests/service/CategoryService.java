@@ -9,6 +9,6 @@ import edu.onlinetests.model.Category;
 @Service(value = "categoryService")
 public interface CategoryService {
 
-	List<Category> getTestCategories();
+	List<Category> getCategories();
 	
 }
