@@ -12,7 +12,7 @@ import java.util.Properties;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import edu.onlinetests.persistance.PersistanceManager;
+import edu.onlinetests.backend.persistance.PersistanceManager;
 
 public class PropertiesProvider {
 
