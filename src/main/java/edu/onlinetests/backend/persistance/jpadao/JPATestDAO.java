@@ -1,8 +1,6 @@
 package edu.onlinetests.backend.persistance.jpadao;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -40,26 +38,24 @@ public class JPATestDAO implements TestDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<TestResult> getBestResultsOfCategory(Category category) {
+	public List<TestResult> getBestResultsOfCategory(Category category) {
 		EntityManager em = persistanceManager.getEntityManager();
 		Query query = em.createQuery("select s from TestResult s where s.category=:category limit 10 order by s.score");
+		query.setMaxResults(10);
 		query.setParameter("category",category); 
 		List<TestResult> list = query.getResultList();
-		Set<TestResult> result = new HashSet<TestResult>(list);
 		em.close();
-		return result;
+		return list;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<TestResult> getOwnResults(User user) {
+	public List<TestResult> getOwnResults(User user) {
 		EntityManager em = persistanceManager.getEntityManager();
 		Query query = em.createQuery("select s from TestResult s where s.user=:user order by s.score");
 		query.setParameter("user",user); 
 		List<TestResult> list = query.getResultList();
-		Set<TestResult> result = new HashSet<TestResult>(list);
 		em.close();
-		return result;
-		
+		return list;
 	}
 }
