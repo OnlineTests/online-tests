@@ -17,9 +17,9 @@
 		    	<p>Statistics</p>
 		    	<p:commandButton id="statisticsButton" ajax="false" action="#{statisticsController.initiateStatistics}"></p:commandButton>
 		    </div>
-		    <div id="own" onclick="document.getElementById('main:quizButton').click();">
+		    <div id="own" onclick="document.getElementById('main:ownButton').click();">
 		    	<p>View Own Results</p>
-		    	<p:commandButton id="ownButton"></p:commandButton>
+		    	<p:commandButton id="ownButton" action="#{categoryResultsController.populateResults}" ajax="false"></p:commandButton>
 		    </div>
 		    <div id="category" onclick="document.getElementById('main:categoryButton').click();">
 		    	<p>View Category Results</p>

@@ -13,5 +13,6 @@ public class Pages {
 	public static final String FINISHED_PAGE = "/pages/finished" + REDIRECT_STRING;
 	public static final String STATISTICS_PAGE = "/pages/statistics" + REDIRECT_STRING;
 	public static final String CATEGORY_RESULTS_PAGE = "/pages/categoryresults" + REDIRECT_STRING;
+	public static final String OWN_RESULTS_PAGE = "/pages/ownresults" + REDIRECT_STRING;
 	
 }

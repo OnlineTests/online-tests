@@ -10,19 +10,18 @@
     <script name="jquery/jquery.js" library="primefaces"></script>
 </h:head>
 <h:body>
-	<h2 align="center">Cele mai bune rezultate pentru diferite categorii</h2>
-	<h:form id="results" class="form-module">
-		<p:tabView id="tabView" activeIndex="#{categoryResultsController.index}" value="#{categoryResultsController.categories}" var="category">
-        <p:ajax event="tabChange" listener="#{categoryResultsController.onTabChanged}" update="@form:tabView"></p:ajax>
-		    <p:tab id="tab" title="#{category.name}">
-			    <p:dataList value="#{categoryResultsController.result}" var="tr" type="ordered">
-			        #{tr.user.name},
+	<h2 align="center">Cele mai bune rezultate proprii</h2>
+	<h:form id="ownresults" class="form-module">
+	    <p:dataTable value="#{categoryResultsController.result}" var="tr" type="ordered">
+	    	<p:column style="text-align: center;" headerText="Score">
 	        	<h:outputText value="#{tr.score}"> 
 	        		<f:convertNumber minFractionDigits="2" type="percent" />
 	        	</h:outputText>
-			    </p:dataList>
-		    </p:tab>
-		</p:tabView>
+			</p:column>
+	        <p:column style="text-align: center;" headerText="Category">
+	        	#{tr.category.name}
+			</p:column>
+	    </p:dataTable>
 	</h:form>
 	<h:form id="back" styleClass="back-div" align="center"> 
 		<p:commandButton value="Back to main" styleClass="back-button" id="backButton" ajax="false" action="#{categoryResultsController.back}">

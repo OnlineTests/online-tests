@@ -18,40 +18,40 @@
 		<c:forEach items="#{statisticsController.categories}" var="category">
 			<p:tab title="#{category.name}">
 				<p:dataTable value="#{category.questions}" var="question">
-					<p:column headerText="Question">
+					<p:column style="text-align: center;" headerText="Question">
 						#{question.question}
 					</p:column>
-					<p:column headerText="Answer A">
+					<p:column style="text-align: center;" headerText="Answer A">
 						#{question.answerA}
 					</p:column>
-					<p:column  headerText="Answer B">
+					<p:column style="text-align: center;" headerText="Answer B">
 						#{question.answerB}
 					</p:column>
-					<p:column  headerText="Answer C">
+					<p:column style="text-align: center;" headerText="Answer C">
 						#{question.answerC}
 					</p:column>
-					<p:column headerText="Answer D">
+					<p:column style="text-align: center;" headerText="Answer D">
 						#{question.answerD}
 					</p:column>
-					<p:column headerText="Correct answer">
+					<p:column style="text-align: center;" headerText="Correct answer">
 						#{statisticsController.statisticByQuestion.get(question).correctAnswer}
 					</p:column>
-					<p:column headerText="Answers number">
+					<p:column style="text-align: center;" headerText="Answers number">
 						#{statisticsController.statisticByQuestion.get(question).answersNumber}
 					</p:column>
-					<p:column headerText="Answer A answered">
+					<p:column style="text-align: center;" headerText="Answer A answered">
 						#{statisticsController.statisticByQuestion.get(question).answerAPercentage}
 					</p:column>
-					<p:column headerText="Answer B answered">
+					<p:column style="text-align: center;" headerText="Answer B answered">
 						#{statisticsController.statisticByQuestion.get(question).answerBPercentage}
 					</p:column>
-					<p:column headerText="Answer C answered">
+					<p:column style="text-align: center;" headerText="Answer C answered">
 						#{statisticsController.statisticByQuestion.get(question).answerCPercentage}
 					</p:column>
-					<p:column headerText="Answer D answered">
+					<p:column style="text-align: center;" headerText="Answer D answered">
 						#{statisticsController.statisticByQuestion.get(question).answerDPercentage}
 					</p:column>
-					<p:column headerText="Correct answer answered">
+					<p:column style="text-align: center;" headerText="Correct answer answered">
 						#{statisticsController.statisticByQuestion.get(question).correctAnswerPercentage}
 					</p:column>
 				</p:dataTable>

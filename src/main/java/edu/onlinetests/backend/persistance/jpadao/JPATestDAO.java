@@ -40,7 +40,7 @@ public class JPATestDAO implements TestDAO {
 	@Override
 	public List<TestResult> getBestResultsOfCategory(Category category) {
 		EntityManager em = persistanceManager.getEntityManager();
-		Query query = em.createQuery("select s from TestResult s where s.category=:category limit 10 order by s.score");
+		Query query = em.createQuery("select s from TestResult s where s.category=:category order by s.score");
 		query.setMaxResults(10);
 		query.setParameter("category",category); 
 		List<TestResult> list = query.getResultList();

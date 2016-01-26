@@ -20,6 +20,10 @@ body {
 	height: 350px;
 }
 
+.grid {
+    text-align: center;
+}
+
 #finished {
 	position: absolute;
 	left: 500px;
