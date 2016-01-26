@@ -1,11 +1,16 @@
 package edu.onlinetests.frontend.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import edu.onlinetests.backend.exception.ServerException;
 import edu.onlinetests.backend.service.UserService;
 import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.User;
@@ -25,6 +30,7 @@ public class RegisterController {
 	private String name;
 	private String password;
 	private String username;
+	private List<String> errors;
 	
 	public String register() {
 		User user = UserBuilder.getBuilder()
@@ -35,8 +41,15 @@ public class RegisterController {
 			.setUsername(username)
 			.setPassword(password)
 			.build();
-		userService.register(user);
-		return Pages.MAIN_PAGE;
+		try {
+			user = userService.register(user);
+			Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+			session.put("user", user);
+			return Pages.MAIN_PAGE;
+		} catch(ServerException ex) {
+			errors = ex.getErrors();
+			return Pages.REGISTER_PAGE;
+		}
 	}
 	
 	public String backToLogin() {
@@ -83,6 +96,14 @@ public class RegisterController {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public List<String> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<String> errors) {
+		this.errors = errors;
 	}
 	
 }

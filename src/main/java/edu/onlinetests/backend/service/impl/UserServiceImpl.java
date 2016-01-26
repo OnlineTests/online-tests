@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import edu.onlinetests.backend.persistance.UserDAO;
 import edu.onlinetests.backend.service.UserService;
+import edu.onlinetests.backend.validator.annotation.Validate;
 import edu.onlinetests.model.User;
 
 @Component
@@ -25,10 +26,10 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Validate
 	@Override
 	public User register(User user) {
-		System.out.println("user added");
-		//this.user = userDAO.register(user);
+		this.user = userDAO.register(user);
 		return user;
 	}
 

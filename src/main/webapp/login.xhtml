@@ -18,7 +18,7 @@
 <h:body>
 	<div class="form-module">
 		<h:form id="login">
-			<p:outputLabel id="error" value="#{userController.errorMessage}"/>
+			<p:outputLabel styleClass="error" value="#{userController.errorMessage}"/>
 			<p:messages id="msgs"/>
 			<h:panelGrid columns="3" rowClasses="center" cellpadding="5">
 				<h:outputLabel for="username" value="Username: " />
