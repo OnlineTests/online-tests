@@ -1,22 +1,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
 	<title>Category Results</title>
 	<link rel="stylesheet" href="../css/style.css" />
-	<script>
-	</script>
+	<link rel="stylesheet" href="../css/back.css" />
+    <script name="jquery/jquery.js" library="primefaces"></script>
 </h:head>
 <h:body>
-	<h:form id="results">
-		<h:panelGrid columns="4" cellspacing="5">
-			<p:tabMenu activeIndex="#{categoryResultsController.i}">
-			    <p:menuitem value="#{categoryResultsController.categories}" outcome="/ui/menu/tabMenu" icon="ui-icon-star">
-			<!--         <f:param name="i" value="0" /> -->
-			    </p:menuitem>
-			</p:tabMenu>
-	    </h:panelGrid>
+	<h2 align="center">Cele mai bune rezultate pentru diferite categorii</h2>
+	<h:form id="results" class="form-module">
+		<p:tabView id="tabView" activeIndex="#{categoryResultsController.index}" value="#{categoryResultsController.categories}" var="category">
+        <p:ajax event="tabChange" listener="#{categoryResultsController.onTabChanged}" update="@form:tabView"></p:ajax>
+		    <p:tab id="tab" title="#{category.name}">
+			    <p:dataList value="#{categoryResultsController.result}" var="tr" type="ordered">
+			        #{tr.user.name}, #{tr.score}
+			    </p:dataList>
+		    </p:tab>
+		</p:tabView>
+	</h:form>
+	<h:form id="back" styleClass="back-div" align="center"> 
+		<p:commandButton value="Back to main" styleClass="back-button" id="backButton" ajax="false" action="#{categoryResultsController.back}">
+		</p:commandButton>
 	</h:form>
 </h:body>
 </html>

@@ -5,10 +5,12 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.primefaces.event.TabChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import edu.onlinetests.model.Category;
+import edu.onlinetests.model.TestResult;
 import edu.onlinetests.service.CategoryService;
 import edu.onlinetests.service.TestService;
 import edu.onlinetests.view.Pages;
@@ -19,7 +21,8 @@ import edu.onlinetests.view.Pages;
 public class CategoryResultsController {
 
 	private List<Category> categories;
-	private int i = 0;
+	private List<TestResult> result;
+	private int index = 0;
 
 	@Autowired
 	private TestService testService;
@@ -29,10 +32,19 @@ public class CategoryResultsController {
 
 	public String populateCategories() {
 		categories = categoryService.getTestCategories();
+		result = testService.getBestResultsOfCategory(categories.get(0));
 		return Pages.CATEGORY_RESULTS_PAGE;
 	}
+	
+    public void onTabChanged(TabChangeEvent e){
+		result = testService.getBestResultsOfCategory(categories.get(index));
+    }
 
-	public List<Category> getCategories() {
+	public String back() {
+		return Pages.MAIN_PAGE;
+	}
+	
+    public List<Category> getCategories() {
 		return categories;
 	}
 
@@ -40,11 +52,20 @@ public class CategoryResultsController {
 		this.categories = categories;
 	}
 
-	public int getI() {
-		return i;
+	public List<TestResult> getResult() {
+		return result;
 	}
 
-	public void setI(int i) {
-		this.i = i;
+	public void setResult(List<TestResult> result) {
+		this.result = result;
 	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
 }

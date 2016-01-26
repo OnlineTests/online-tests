@@ -1,8 +1,8 @@
 package edu.onlinetests.service.impl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,12 +39,12 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public Set<TestResult> getBestResultsOfCategory(Category category) {
+	public List<TestResult> getBestResultsOfCategory(Category category) {
 		return testDAO.getBestResultsOfCategory(category);
 	}
 
 	@Override
-	public Set<TestResult> getOwnResults(User user) {
+	public List<TestResult> getOwnResults(User user) {
 		return testDAO.getOwnResults(user);
 	}
 

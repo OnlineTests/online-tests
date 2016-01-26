@@ -1,6 +1,6 @@
 package edu.onlinetests.persistance;
 
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +12,7 @@ import edu.onlinetests.model.User;
 public interface TestDAO {
 
 	void storeTestResult(TestResult testResult);
-	Set<TestResult> getBestResultsOfCategory(Category category);
-	Set<TestResult> getOwnResults(User user);
+	List<TestResult> getBestResultsOfCategory(Category category);
+	List<TestResult> getOwnResults(User user);
 	
 }

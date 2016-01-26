@@ -44,23 +44,21 @@ public class JPATestDAO implements TestDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<TestResult> getBestResultsOfCategory(Category category) {
-		Query query = currentEntityManager().createQuery("select s from TestResult s where s.category=:category limit 10 order by s.score");
+	public List<TestResult> getBestResultsOfCategory(Category category) {
+		Query query = currentEntityManager().createQuery("select s from TestResult s where s.category=:category order by s.score");
 		query.setParameter("category",category); 
-		
-		List<TestResult> list = query.getResultList();
-		Set<TestResult> result = new HashSet<TestResult>(list);
+		query.setMaxResults(10);
+		List<TestResult> result = query.getResultList();
 		return result;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Set<TestResult> getOwnResults(User user) {
+	public List<TestResult> getOwnResults(User user) {
 		Query query = currentEntityManager().createQuery("select s from TestResult s where s.user=:user order by s.score");
 		query.setParameter("user",user); 
 		
-		List<TestResult> list = query.getResultList();
-		Set<TestResult> result = new HashSet<TestResult>(list);
+		List<TestResult> result = query.getResultList();
 		return result;
 		
 	}

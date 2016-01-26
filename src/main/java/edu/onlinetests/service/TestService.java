@@ -1,7 +1,7 @@
 package edu.onlinetests.service;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ import edu.onlinetests.model.User;
 public interface TestService {
 
 	void storeTestResult(TestResult testResult);
-	Set<TestResult> getBestResultsOfCategory(Category category);
-	Set<TestResult> getOwnResults(User user);
+	List<TestResult> getBestResultsOfCategory(Category category);
+	List<TestResult> getOwnResults(User user);
 	int evaluateTest(Map<Question, String> answersForQuestions, Category categoryForTest);
 	
 }
