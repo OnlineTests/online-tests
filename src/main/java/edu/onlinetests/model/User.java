@@ -39,7 +39,7 @@ public class User implements Serializable {
 	private String username;
 
 	//bi-directional many-to-one association to Test_Result
-	@OneToMany(mappedBy="user")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="user")
 	private List<TestResult> testResults;
 
 	public User() {

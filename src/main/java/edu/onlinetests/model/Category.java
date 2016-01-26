@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,11 +33,11 @@ public class Category implements Serializable {
 	private String name;
 
 	//bi-directional many-to-one association to Question
-	@OneToMany(mappedBy="category")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
 	private List<Question> questions;
 
 	//bi-directional many-to-one association to Test_Result
-	@OneToMany(mappedBy="category")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
 	private List<TestResult> testResults;
 
 	public Category() {
