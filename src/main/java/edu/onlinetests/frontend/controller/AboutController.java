@@ -1,5 +1,7 @@
 package edu.onlinetests.frontend.controller;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -10,6 +12,9 @@ import org.primefaces.model.tagcloud.TagCloudModel;
 import org.springframework.stereotype.Component;
 
 import edu.onlinetests.frontend.Pages;
+import edu.onlinetests.utils.FileUtils;
+import edu.onlinetests.utils.PropertiesProvider;
+import edu.onlinetests.utils.StringKey;
 
 @ManagedBean(name = "aboutController")
 @RequestScoped
@@ -21,19 +26,12 @@ public class AboutController {
 	@PostConstruct
 	public void init() {
 		model = new DefaultTagCloudModel();
-		model.addTag(new DefaultTagCloudItem("Primefaces", "#", 5));
-		model.addTag(new DefaultTagCloudItem("JDBC", "#", 1));
-		model.addTag(new DefaultTagCloudItem("JPA", "#", 3));
-		model.addTag(new DefaultTagCloudItem("JSF", "#", 1));
-		model.addTag(new DefaultTagCloudItem("Tomcat", "#", 2));
-		model.addTag(new DefaultTagCloudItem("MYSQL", "#", 3));
-		model.addTag(new DefaultTagCloudItem("Java", "#", 5));
-        model.addTag(new DefaultTagCloudItem("CSS", "#", 3));
-        model.addTag(new DefaultTagCloudItem("Spring", "#", 2));
-        model.addTag(new DefaultTagCloudItem("Javascript", "#", 2));
-        model.addTag(new DefaultTagCloudItem("Maven", "#", 4));
-        model.addTag(new DefaultTagCloudItem("HTML5", "#", 5));
-        model.addTag(new DefaultTagCloudItem("Hibernate", "#", 1));
+		String filename = PropertiesProvider.getStringResource(StringKey.TECHNOLOGIES_FILE_PATH);
+		List<String> lines = FileUtils.getAllLinesFromFile(filename);
+		for (String line : lines) {
+			String[] tokens = line.split(",");
+			model.addTag(new DefaultTagCloudItem(tokens[0], tokens[1], Integer.parseInt(tokens[2])));
+		}
 	}
 	
 	public String goToAbout() {

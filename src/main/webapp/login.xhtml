@@ -8,8 +8,8 @@
 	<script>
 		$(document).ready(function(){
 		    $("#login\\:reset").click(function(){
-		        $('#login\\:username').attr("value", "");
-		        $('#login\\:password').attr("value", "");
+		        $('#login\\:username').prop("value", "");
+		        $('#login\\:password').prop("value", "");
 		        $('#login\\:error').text("");
 		    });
 		});

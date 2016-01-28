@@ -3,7 +3,7 @@ package edu.onlinetests.backend.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import edu.onlinetests.backend.persistance.UserDAO;
+import edu.onlinetests.backend.persistence.UserDAO;
 import edu.onlinetests.backend.service.UserService;
 import edu.onlinetests.backend.validator.annotation.Validate;
 import edu.onlinetests.model.User;

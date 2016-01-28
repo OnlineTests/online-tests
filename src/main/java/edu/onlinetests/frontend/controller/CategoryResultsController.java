@@ -1,11 +1,9 @@
 package edu.onlinetests.frontend.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.event.TabChangeEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.TestResult;
 import edu.onlinetests.model.User;
+import edu.onlinetests.utils.SessionUtils;
 
 @ManagedBean(name = "categoryResultsController")
 @SessionScoped
@@ -40,8 +39,7 @@ public class CategoryResultsController {
 	}
 
 	public String populateResults() {
-		Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-		User user = (User) session.get("user");
+		User user = SessionUtils.getSessionUser();
 		setResult(testService.getOwnResults(user));
 		return Pages.OWN_RESULTS_PAGE;
 	}

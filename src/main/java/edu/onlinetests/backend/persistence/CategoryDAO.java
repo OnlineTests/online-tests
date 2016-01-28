@@ -1,4 +1,4 @@
-package edu.onlinetests.backend.persistance;
+package edu.onlinetests.backend.persistence;
 
 import java.util.List;
 

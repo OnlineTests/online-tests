@@ -6,13 +6,10 @@
 
 	<persistence-unit name="online_tests" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>edu.onlinetests.model.Category</class>
-		<class>edu.onlinetests.model.Question</class>
-		<class>edu.onlinetests.model.Question_Statistic</class>
-		<class>edu.onlinetests.model.Test_Result</class>
-		<class>edu.onlinetests.model.Test_ResultPK</class>
-		<class>edu.onlinetests.model.User</class>
 		<properties>
+			<property name="hibernate.connection.characterEncoding" value="utf8"></property>
+			<property name="hibernate.connection.useUnicode" value="true"></property>
+			<property name="hibernate.connection.charSet" value="UTF-8"></property> 
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/online_tests" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.user" value="root"/>

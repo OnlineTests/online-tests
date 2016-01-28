@@ -1,4 +1,4 @@
-package edu.onlinetests.backend.persistance.jpadao;
+package edu.onlinetests.backend.persistence.jpadao;
 
 
 import java.util.List;
@@ -9,8 +9,8 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import edu.onlinetests.backend.persistance.PersistanceManager;
-import edu.onlinetests.backend.persistance.QuestionDAO;
+import edu.onlinetests.backend.persistence.PersistanceManager;
+import edu.onlinetests.backend.persistence.QuestionDAO;
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.Question;
 

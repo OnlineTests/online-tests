@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `Category` (`CId` int(11) NOT NULL AUTO_INCREMENT, `n
 --
 -- Table structure for table `Question`
 --
-CREATE TABLE IF NOT EXISTS `Question` (`questionId` int(11) NOT NULL AUTO_INCREMENT, `categoryId` int(11) NOT NULL, `question` varchar(50) CHARACTER SET utf8 NOT NULL, `answerA` varchar(50) NOT NULL, `answerB` varchar(50) NOT NULL, `answerC` varchar(50) NOT NULL, `answerD` varchar(50) NOT NULL, `correctAnswer` enum('A','B','C','D') NOT NULL, PRIMARY KEY (`questionId`), KEY `categoryId` (`categoryId`), CONSTRAINT `FK_Question_Category` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`CId`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+CREATE TABLE IF NOT EXISTS `Question` (`questionId` int(11) NOT NULL AUTO_INCREMENT, `categoryId` int(11) NOT NULL, `question` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, `answerA` varchar(50) NOT NULL, `answerB` varchar(50) NOT NULL, `answerC` varchar(50) NOT NULL, `answerD` varchar(50) NOT NULL, `correctAnswer` enum('A','B','C','D') NOT NULL, PRIMARY KEY (`questionId`), KEY `categoryId` (`categoryId`), CONSTRAINT `FK_Question_Category` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`CId`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
 --
 -- Table structure for table `Question_Statistic`
 --
@@ -23,4 +23,4 @@ CREATE TABLE IF NOT EXISTS `User` (`userId` int(11) NOT NULL AUTO_INCREMENT, `us
 --
 -- Table structure for table `Test_Result`
 --
-CREATE TABLE IF NOT EXISTS `Test_Result` (`userId` int(11) NOT NULL, `categoryId` int(11) NOT NULL, `score` float(11) NOT NULL, CONSTRAINT `FK_Test_Result_User` FOREIGN KEY (`userId`) REFERENCES `User` (`userId`), CONSTRAINT `FK_Test_Result_Category` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`CId`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `Test_Result` (`id` int(11) NOT NULL AUTO_INCREMENT, `userId` int(11) NOT NULL, `categoryId` int(11) NOT NULL, `score` float(11) NOT NULL, CONSTRAINT `FK_Test_Result_User` FOREIGN KEY (`userId`) REFERENCES `User` (`userId`), CONSTRAINT `FK_Test_Result_Category` FOREIGN KEY (`categoryId`) REFERENCES `Category` (`CId`), PRIMARY KEY (`id`)) ENGINE=InnoDB DEFAULT CHARSET=latin1;

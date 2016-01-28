@@ -7,15 +7,14 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import edu.onlinetests.backend.persistance.QuestionStatisticDAO;
-import edu.onlinetests.backend.persistance.TestDAO;
+import edu.onlinetests.backend.persistence.QuestionStatisticDAO;
+import edu.onlinetests.backend.persistence.TestDAO;
 import edu.onlinetests.backend.service.TestService;
 import edu.onlinetests.backend.service.UserService;
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.Question;
 import edu.onlinetests.model.QuestionStatistic;
 import edu.onlinetests.model.TestResult;
-import edu.onlinetests.model.TestResultPK;
 import edu.onlinetests.model.User;
 
 @Component
@@ -68,10 +67,6 @@ public class TestServiceImpl implements TestService {
 		tr.setScore((float)correctAnswers / (float)numberOfQuestions);
 		tr.setUser(userService.getCurrentUser());
 		tr.setCategory(category);
-		TestResultPK pk = new TestResultPK();
-		pk.setCategoryId(category.getCId());
-		pk.setUserId(userService.getCurrentUser().getUserId());
-		tr.setId(pk);
 		new Thread() {
 			public void run() {
 				testDAO.storeTestResult(tr);

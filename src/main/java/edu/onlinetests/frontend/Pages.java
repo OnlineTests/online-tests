@@ -5,6 +5,8 @@ public class Pages {
 	
 	private static final String REDIRECT_STRING = "?faces-redirect=true";
 	
+	public static final String LOGIN_PAGE_WITHOUT_REDIRECT = "/login.xhtml";
+	
 	public static final String LOGIN_PAGE = "/login" + REDIRECT_STRING;
 	public static final String REGISTER_PAGE = "/register" + REDIRECT_STRING;
 	public static final String ABOUT_PAGE = "/about" + REDIRECT_STRING;

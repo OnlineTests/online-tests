@@ -1,4 +1,4 @@
-package edu.onlinetests.backend.persistance.jpadao;
+package edu.onlinetests.backend.persistence.jpadao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,9 +10,10 @@ import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import edu.onlinetests.backend.persistance.PersistanceManager;
-import edu.onlinetests.backend.persistance.QuestionStatisticDAO;
+import edu.onlinetests.backend.persistence.PersistanceManager;
+import edu.onlinetests.backend.persistence.QuestionStatisticDAO;
 import edu.onlinetests.model.QuestionStatistic;
+import edu.onlinetests.utils.PropertiesProvider;
 
 @Component
 public class JPAQuestionStatisticDAO implements QuestionStatisticDAO {
@@ -39,9 +40,13 @@ public class JPAQuestionStatisticDAO implements QuestionStatisticDAO {
 	private void updateIdUsingJDBC(QuestionStatistic questionStatistic) {
 		Properties credentials = persistanceManager.getCredentials();
 		try {
-			Connection connection = DriverManager.getConnection((String)credentials.get("url"), (String)credentials.get("user"), (String)credentials.get("password"));
-			String sql = "UPDATE `Question_Statistic` SET questionId=" + questionStatistic.getQuestion().getQuestionId()
-					+ " WHERE statisticId=" + questionStatistic.getStatisticId();
+			Connection connection = DriverManager.getConnection(
+					credentials.getProperty(PropertiesProvider.URL_PROPERTY), 
+					(String)credentials.getProperty(PropertiesProvider.USER_PROPERTY),
+					(String)credentials.getProperty(PropertiesProvider.PASSWORD_PROPERTY));
+			String sql = "UPDATE `Question_Statistic` "
+					   + "SET questionId=" + questionStatistic.getQuestion().getQuestionId()
+					  + " WHERE statisticId=" + questionStatistic.getStatisticId();
 			connection.createStatement().executeUpdate(sql);
 			connection.close();
 		} catch (SQLException e) {

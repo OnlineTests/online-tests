@@ -1,7 +1,5 @@
 package edu.onlinetests.frontend.controller;
 
-import java.util.Map;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Component;
 import edu.onlinetests.backend.service.UserService;
 import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.User;
+import edu.onlinetests.utils.SessionUtils;
 
 @ManagedBean(name = "userController")
 @RequestScoped
@@ -31,8 +30,7 @@ public class UserController {
 			user = userService.login(username, password);
 		}
 		if(user != null) {
-			Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-			session.put("user", user);
+			SessionUtils.addUserInSession(user);
 			return Pages.MAIN_PAGE;
 		} else {
 			errorMessage = "Failed authentication! Invalid username or password!";

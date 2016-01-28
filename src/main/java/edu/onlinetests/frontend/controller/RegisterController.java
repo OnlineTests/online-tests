@@ -1,11 +1,9 @@
 package edu.onlinetests.frontend.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +13,7 @@ import edu.onlinetests.backend.service.UserService;
 import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.User;
 import edu.onlinetests.model.builder.UserBuilder;
+import edu.onlinetests.utils.SessionUtils;
 
 @ManagedBean(name = "registerController")
 @RequestScoped
@@ -43,8 +42,7 @@ public class RegisterController {
 			.build();
 		try {
 			user = userService.register(user);
-			Map<String, Object> session = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-			session.put("user", user);
+			SessionUtils.addUserInSession(user);
 			return Pages.MAIN_PAGE;
 		} catch(ServerException ex) {
 			errors = ex.getErrors();

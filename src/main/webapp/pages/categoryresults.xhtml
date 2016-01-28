@@ -11,7 +11,7 @@
 </h:head>
 <h:body>
 	<h2 align="center">Cele mai bune rezultate pentru diferite categorii</h2>
-	<h:form id="results" class="form-module">
+	<h:form id="results" class="form-module" style="max-width: 575px;">
 		<p:tabView id="tabView" activeIndex="#{categoryResultsController.index}" value="#{categoryResultsController.categories}" var="category">
         <p:ajax event="tabChange" listener="#{categoryResultsController.onTabChanged}" update="@form:tabView"></p:ajax>
 		    <p:tab id="tab" title="#{category.name}">
