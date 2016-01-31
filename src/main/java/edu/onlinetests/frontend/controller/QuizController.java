@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import edu.onlinetests.backend.service.CategoryService;
@@ -17,9 +18,13 @@ import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.Question;
 import edu.onlinetests.model.TestResult;
+import edu.onlinetests.utils.PropertiesProvider;
+import edu.onlinetests.utils.RandomUtils;
+import edu.onlinetests.utils.StringKey;
 
 @ManagedBean(name = "quizController")
 @SessionScoped
+@Scope(value="session")
 @Component
 public class QuizController {
 	
@@ -33,7 +38,7 @@ public class QuizController {
 	private TestResult testResult;
 	private String score;
 	private int correctAnswersNumber;
-	private int questionsNumber;
+	private int questionNumber;
 	
 	private int questionIndex;
 	private Map<String, Category> categoriesByName;
@@ -52,6 +57,7 @@ public class QuizController {
 		for (Category category : categories) {
 			categoriesByName.put(category.getName(), category);
 		}
+		questionNumber = Integer.parseInt(PropertiesProvider.getStringResource(StringKey.QUESTION_NUMBER));
 		selectedCategory = categories.get(0).getName();
 		answersForQuestions = new HashMap<Question, String>();
 		return Pages.QUIZ_PAGE;
@@ -60,8 +66,7 @@ public class QuizController {
 	public String startQuiz() {
 		Category category = categoriesByName.get(selectedCategory);
 		questions = category.getQuestions();
-		questionsNumber = questions.size();
-		questionIndex = 0;
+		questionIndex = RandomUtils.generateInteger(questions.size());
 		currentQuestion = questions.get(questionIndex);
 		answer = DEFAULT_ANSWER;
 		return null;
@@ -69,8 +74,9 @@ public class QuizController {
 	
 	public String nextQuestion() {
 		answersForQuestions.put(currentQuestion, answer);
-		++questionIndex;
-		if(questionIndex < questions.size()) {
+		questions.remove(questionIndex);
+		if(!questions.isEmpty() && answersForQuestions.size() < questionNumber) {
+			questionIndex = RandomUtils.generateInteger(questions.size());
 			answer = DEFAULT_ANSWER;
 			currentQuestion = questions.get(questionIndex);
 			return null;
@@ -81,8 +87,8 @@ public class QuizController {
 	}
 
 	private void prepareScoreForDisplay() {
-		correctAnswersNumber = testService.evaluateTest(answersForQuestions, categoriesByName.get(selectedCategory));
-		score = String.format("%2.2f", 100.0*(float)correctAnswersNumber / (float)questionsNumber);
+		correctAnswersNumber = testService.evaluateQuiz(answersForQuestions, categoriesByName.get(selectedCategory));
+		score = String.format("%2.2f", 100.0*(float)correctAnswersNumber / (float)questionNumber);
 	}
 	
 	public String back() {
@@ -154,11 +160,11 @@ public class QuizController {
 	}
 
 	public int getQuestionsNumber() {
-		return questionsNumber;
+		return questionNumber;
 	}
 
 	public void setQuestionsNumber(int questionsNumber) {
-		this.questionsNumber = questionsNumber;
+		this.questionNumber = questionsNumber;
 	}
 
 	public TestService getTestService() {

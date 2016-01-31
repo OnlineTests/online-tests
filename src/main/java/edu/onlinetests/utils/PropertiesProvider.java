@@ -12,11 +12,20 @@ import java.util.Properties;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import edu.onlinetests.backend.persistance.PersistanceManager;
+import edu.onlinetests.backend.persistence.PersistanceManager;
 
 public class PropertiesProvider {
 
+	public static final String PASSWORD_PROPERTY = "password";
+	public static final String USER_PROPERTY = "user";
+	public static final String URL_PROPERTY = "url";
+	
 	private static final Logger logger = LogManager.getLogger(PropertiesProvider.class);
+	private static final Properties strings;
+	
+	static {
+		strings = getPropertiesFromFile("strings.properties");
+	}
 	
 	public static Properties getPropertiesFromFile(String path) {
 		Properties properties = new Properties();
@@ -34,10 +43,14 @@ public class PropertiesProvider {
 	
 	public static Map<String, String> propertiesToMap(Properties properties) {
 		Map<String, String> propertiesMap = new HashMap<String, String>();
-		propertiesMap.put("javax.persistence.jdbc.url", properties.getProperty("url"));
-		propertiesMap.put("javax.persistence.jdbc.user", properties.getProperty("user"));
-		propertiesMap.put("javax.persistence.jdbc.password", properties.getProperty("password"));
+		propertiesMap.put("javax.persistence.jdbc.url", properties.getProperty(URL_PROPERTY));
+		propertiesMap.put("javax.persistence.jdbc.user", properties.getProperty(USER_PROPERTY));
+		propertiesMap.put("javax.persistence.jdbc.password", properties.getProperty(PASSWORD_PROPERTY));
 		return propertiesMap;
+	}
+	
+	public static String getStringResource(String key) {
+		return strings.getProperty(key);
 	}
 	
 	

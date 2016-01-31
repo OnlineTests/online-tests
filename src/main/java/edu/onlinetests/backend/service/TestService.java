@@ -16,6 +16,6 @@ public interface TestService {
 	void storeTestResult(TestResult testResult);
 	List<TestResult> getBestResultsOfCategory(Category category);
 	List<TestResult> getOwnResults(User user);
-	int evaluateTest(Map<Question, String> answersForQuestions, Category categoryForTest);
+	int evaluateQuiz(Map<Question, String> answersForQuestions, Category quizCategory);
 	
 }

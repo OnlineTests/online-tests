@@ -1,0 +1,14 @@
+Primefaces,http://www.primefaces.org/,5
+JDBC,#,1
+JPA,#,3
+JSF,#,1
+Tomcat,#,2
+MYSQL,#,3
+Java,https://www.java.com/en/,5
+CSS,#,3
+Spring,#,2
+Javascript,#,2
+Maven,#,4
+HTML5,#,5
+Hibernate,#,1
+AspectJ,#,1

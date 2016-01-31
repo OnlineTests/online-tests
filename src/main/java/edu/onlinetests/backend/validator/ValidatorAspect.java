@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 import edu.onlinetests.backend.exception.ServerException;
+import edu.onlinetests.backend.logging.Logger;
 import edu.onlinetests.model.User;
 
 @Aspect
@@ -19,7 +20,9 @@ public class ValidatorAspect {
 		User userParameter = (User)point.getArgs()[0];
 		List<String> errors = UserValidator.validate(userParameter);
 		if(!errors.isEmpty()) {
-			throw new ServerException("User is not valid!", errors);
+			String message = String.format("The data provided for user %s is not valid!", userParameter.getName());
+			Logger.log(message);
+			throw new ServerException(message, errors);
 		}
 	}
 	

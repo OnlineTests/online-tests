@@ -14,30 +14,32 @@ import javax.persistence.*;
 public class TestResult implements Serializable, Comparable<TestResult> {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private TestResultPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
+	private int id;
 
 	@Column(nullable=false)
 	private float score;
 
 	//bi-directional many-to-one association to Category
 	@ManyToOne
-	@JoinColumn(name="categoryId", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="categoryId", nullable=false, insertable=true, updatable=false)
 	private Category category;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="userId", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="userId", nullable=false, insertable=true, updatable=false)
 	private User user;
 
 	public TestResult() {
 	}
-
-	public TestResultPK getId() {
+	
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(TestResultPK id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

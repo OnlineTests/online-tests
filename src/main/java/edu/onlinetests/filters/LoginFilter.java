@@ -11,7 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.User;
+import edu.onlinetests.utils.SessionUtils;
 
 public class LoginFilter implements Filter {
 
@@ -24,11 +26,11 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest)request;
-		User user = (User) httpRequest.getSession().getAttribute("user");
+		User user = (User) httpRequest.getSession().getAttribute(SessionUtils.SESSION_USER_KEY);
 		if(user != null) {
 			chain.doFilter(request, response);
 		} else {
-			((HttpServletResponse)response).sendRedirect(httpRequest.getContextPath() + "/login.xhtml");
+			((HttpServletResponse)response).sendRedirect(httpRequest.getContextPath() + Pages.LOGIN_PAGE_WITHOUT_REDIRECT);
 		}
 	}
 
