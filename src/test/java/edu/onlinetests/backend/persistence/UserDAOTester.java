@@ -1,32 +1,31 @@
 package edu.onlinetests.backend.persistence;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
+import edu.onlinetests.AllTests;
 import edu.onlinetests.backend.persistence.jpadao.JPAUserDAO;
 import edu.onlinetests.model.User;
 
 public class UserDAOTester {
 
-	private static PersistanceManager persistanceManager = new PersistanceManager();
 	private UserDAO userDAO;
-	
-	@BeforeClass
-	public static void setUpPersistenceManager() {
-		persistanceManager.initialize();
-	}
 	
 	@Before
 	public void init() {
-		userDAO = new JPAUserDAO(persistanceManager);
+		userDAO = new JPAUserDAO(AllTests.persistanceManager);
 	}
 
 	@Test
 	public void test() {
-		User user = userDAO.login("Arnold", "12345");
+		String username = "Arnold";
+		String password = "12345";
+		User user = userDAO.login(username, password);
+		assertEquals(user.getUsername(), username);
+		assertEquals(user.getPassword(), password);
 		assertTrue(user.getEmail().equals("szederjesiarnold@yahoo.com"));
 	}
 
