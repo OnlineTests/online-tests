@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import edu.onlinetests.backend.service.CategoryService;
@@ -23,6 +24,7 @@ import edu.onlinetests.utils.StringKey;
 
 @ManagedBean(name = "quizController")
 @SessionScoped
+@Scope(value="session")
 @Component
 public class QuizController {
 	
@@ -73,7 +75,7 @@ public class QuizController {
 	public String nextQuestion() {
 		answersForQuestions.put(currentQuestion, answer);
 		questions.remove(questionIndex);
-		if(!questions.isEmpty() && answersForQuestions.size() < 5) {
+		if(!questions.isEmpty() && answersForQuestions.size() < questionNumber) {
 			questionIndex = RandomUtils.generateInteger(questions.size());
 			answer = DEFAULT_ANSWER;
 			currentQuestion = questions.get(questionIndex);
@@ -85,7 +87,7 @@ public class QuizController {
 	}
 
 	private void prepareScoreForDisplay() {
-		correctAnswersNumber = testService.evaluateTest(answersForQuestions, categoriesByName.get(selectedCategory));
+		correctAnswersNumber = testService.evaluateQuiz(answersForQuestions, categoriesByName.get(selectedCategory));
 		score = String.format("%2.2f", 100.0*(float)correctAnswersNumber / (float)questionNumber);
 	}
 	

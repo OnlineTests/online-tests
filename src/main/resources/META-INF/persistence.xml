@@ -20,8 +20,7 @@
             <property name="javax.persistence.schema-generation.drop-source" value="script"/>
             <property name="javax.persistence.schema-generation.drop-script-source" value="drop_tables.sql"/>
             <property name="javax.persistence.sql-load-script-source" value="data.sql"/>
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 		</properties>
 	</persistence-unit>

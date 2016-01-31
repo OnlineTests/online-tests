@@ -10,24 +10,22 @@ import org.springframework.stereotype.Component;
 import edu.onlinetests.backend.persistence.QuestionStatisticDAO;
 import edu.onlinetests.backend.persistence.TestDAO;
 import edu.onlinetests.backend.service.TestService;
-import edu.onlinetests.backend.service.UserService;
 import edu.onlinetests.model.Category;
 import edu.onlinetests.model.Question;
 import edu.onlinetests.model.QuestionStatistic;
 import edu.onlinetests.model.TestResult;
 import edu.onlinetests.model.User;
+import edu.onlinetests.utils.SessionUtils;
 
 @Component
 public class TestServiceImpl implements TestService {
 
 	private TestDAO testDAO;
-	private UserService userService;
 	private QuestionStatisticDAO statisticDAO;
 	
 	@Autowired
-	public TestServiceImpl(TestDAO testDAO, UserService userService, QuestionStatisticDAO statisticDAO) {
+	public TestServiceImpl(TestDAO testDAO, QuestionStatisticDAO statisticDAO) {
 		this.testDAO = testDAO;
-		this.userService = userService;
 		this.statisticDAO = statisticDAO;
 	}
 	
@@ -48,8 +46,7 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public int evaluateTest(Map<Question, String> answersForQuestions,
-			Category categoryForTest) {
+	public int evaluateQuiz(Map<Question, String> answersForQuestions, Category categoryForTest) {
 		int correctAnswers = 0;
 		for (Entry<Question,String> entry : answersForQuestions.entrySet()) {
 			generateStatistic(entry.getKey(), entry.getValue());
@@ -61,11 +58,10 @@ public class TestServiceImpl implements TestService {
 		return correctAnswers;
 	}
 
-	private void generateTestResult(int correctAnswers, int numberOfQuestions,
-			Category category) {
+	private void generateTestResult(int correctAnswers, int numberOfQuestions, Category category) {
 		final TestResult tr = new TestResult();
 		tr.setScore((float)correctAnswers / (float)numberOfQuestions);
-		tr.setUser(userService.getCurrentUser());
+		tr.setUser(SessionUtils.getSessionUser());
 		tr.setCategory(category);
 		new Thread() {
 			public void run() {

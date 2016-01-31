@@ -36,7 +36,7 @@ public class QuestionStatistic implements Serializable {
 
 	//bi-directional one-to-one association to Question
 	@OneToOne
-	@JoinColumn(name="questionId", referencedColumnName="questionId", nullable=false, insertable=false, updatable=false)
+	@JoinColumn(name="questionId", referencedColumnName="questionId", nullable=false, insertable=true, updatable=false)
 	private Question question;
 
 	public QuestionStatistic() {

@@ -14,6 +14,8 @@ import edu.onlinetests.model.User;
 @Component
 public class JPAUserDAO implements UserDAO {
 
+	private static final String LOGIN_SQL = "select u from User u where u.username=:username and password=:password";
+	
 	private PersistanceManager persistanceManager;
 	
 	@Autowired
@@ -21,19 +23,18 @@ public class JPAUserDAO implements UserDAO {
 		this.persistanceManager = persistanceManager;
 	}
 	
-	private EntityManager currentEntityManager() {
-		return persistanceManager.getEntityManager();
-	}
-
 	@Override
 	public User login(String username, String password)  {
-		Query query = (Query) currentEntityManager().createQuery("select u from User u where u.username=:username and password=:password");
+		EntityManager em = persistanceManager.getEntityManager();
+		Query query = (Query) em.createQuery(LOGIN_SQL);
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		try {
 			return (User) query.getSingleResult();
 		} catch(NoResultException exception) {
 			return null;
+		} finally {
+			em.close();
 		}
 	}
 

@@ -2,7 +2,6 @@ package edu.onlinetests.frontend.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,10 +11,10 @@ import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.User;
 import edu.onlinetests.utils.SessionUtils;
 
-@ManagedBean(name = "userController")
+@ManagedBean(name = "loginController")
 @RequestScoped
 @Component
-public class UserController {
+public class LoginController {
 
 	@Autowired
 	private UserService userService;
@@ -37,14 +36,19 @@ public class UserController {
 			return Pages.LOGIN_PAGE;
 		}
 	}
+	
+	public String backToLogin() {
+		clearFields();
+		return Pages.LOGIN_PAGE;
+	}
 
-	public String initiateRegister() {
-		return Pages.REGISTER_PAGE;
+	public String logout() {
+		userService.logout();
+		return backToLogin();
 	}
 	
-	public String logout() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return Pages.LOGIN_PAGE;
+	public void clearFields() {
+		username = password = errorMessage = "";
 	}
 
 	public void setUserService(UserService loginService) {

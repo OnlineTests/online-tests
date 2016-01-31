@@ -7,6 +7,4 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 @ComponentScan("edu.onlinetests")
 @EnableAspectJAutoProxy
-public class ApplicationConfig {
-
-}
+public class ApplicationConfig {}

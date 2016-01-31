@@ -34,7 +34,7 @@ public class CategoryResultsController {
 
 	public String populateCategories() {
 		categories = categoryService.getCategories();
-		setResult(testService.getBestResultsOfCategory(categories.get(0)));
+		setResult(testService.getBestResultsOfCategory(categories.get(index)));
 		return Pages.CATEGORY_RESULTS_PAGE;
 	}
 

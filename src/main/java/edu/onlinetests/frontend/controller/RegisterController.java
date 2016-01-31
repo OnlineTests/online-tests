@@ -1,5 +1,6 @@
 package edu.onlinetests.frontend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -22,6 +23,8 @@ public class RegisterController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private LoginController userController;
 	
 	private String age;
 	private String email;
@@ -50,8 +53,9 @@ public class RegisterController {
 		}
 	}
 	
-	public String backToLogin() {
-		return Pages.LOGIN_PAGE;
+	public String initiateRegister() {
+		errors = new ArrayList<String>();
+		return Pages.REGISTER_PAGE;
 	}
 	
 	public String getAge() {
