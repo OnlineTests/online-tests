@@ -2,11 +2,13 @@ package edu.onlinetests.backend.persistence.jpadao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import edu.onlinetests.backend.exception.ServerException;
 import edu.onlinetests.backend.persistence.PersistanceManager;
 import edu.onlinetests.backend.persistence.UserDAO;
 import edu.onlinetests.model.User;
@@ -42,7 +44,11 @@ public class JPAUserDAO implements UserDAO {
 	public User register(User user) {
 		EntityManager em = persistanceManager.getEntityManager();
 		em.getTransaction().begin();
-		em.persist(user);
+		try {
+			em.persist(user);
+		} catch(PersistenceException ex) {
+			throw new ServerException("Username already exists!");
+		}
 		em.getTransaction().commit();
 		em.close();
 		return user;

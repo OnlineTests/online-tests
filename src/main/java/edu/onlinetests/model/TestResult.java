@@ -68,11 +68,18 @@ public class TestResult implements Serializable, Comparable<TestResult> {
 	}
 
 	@Override
+	public int compareTo(TestResult o) {
+		return Float.compare(score, o.getScore());
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int)score;
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result
+				+ ((category == null) ? 0 : ((Integer)category.getCId()).hashCode());
+		result = prime * result + Float.floatToIntBits(score);
+		result = prime * result + ((user == null) ? 0 : ((Integer)user.getUserId()).hashCode());
 		return result;
 	}
 
@@ -85,20 +92,22 @@ public class TestResult implements Serializable, Comparable<TestResult> {
 		if (getClass() != obj.getClass())
 			return false;
 		TestResult other = (TestResult) obj;
-		if (score != other.score)
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (category.getCId() != other.category.getCId())
+			return false;
+		if (Float.floatToIntBits(score) != Float.floatToIntBits(other.score))
 			return false;
 		if (user == null) {
 			if (other.user != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (user.getUserId() != other.user.getUserId())
 			return false;
 		return true;
 	}
-
-	@Override
-	public int compareTo(TestResult o) {
-		return Float.compare(score, o.getScore());
-	}
+	
+	
 	
 	
 

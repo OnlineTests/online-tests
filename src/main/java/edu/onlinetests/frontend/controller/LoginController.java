@@ -1,11 +1,13 @@
 package edu.onlinetests.frontend.controller;
 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import edu.onlinetests.backend.exception.ServerException;
 import edu.onlinetests.backend.service.UserService;
 import edu.onlinetests.frontend.Pages;
 import edu.onlinetests.model.User;
@@ -25,16 +27,14 @@ public class LoginController {
 	
 	public String login() {
 		User user = null;
-		if(username!=null && password!=null) {
+		try {
 			user = userService.login(username, password);
-		}
-		if(user != null) {
 			SessionUtils.addUserInSession(user);
 			return Pages.MAIN_PAGE;
-		} else {
-			errorMessage = "Failed authentication! Invalid username or password!";
-			return Pages.LOGIN_PAGE;
+		} catch(ServerException ex) {
+			errorMessage = ex.getMessage();
 		}
+		return Pages.LOGIN_PAGE;
 	}
 	
 	public String backToLogin() {

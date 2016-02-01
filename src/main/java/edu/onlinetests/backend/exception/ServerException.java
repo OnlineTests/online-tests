@@ -12,6 +12,10 @@ public class ServerException extends RuntimeException {
 		this.errors = errors;
 	}
 	
+	public ServerException(String message) {
+		super(message);
+	}
+	
 	public List<String> getErrors() {
 		return errors;
 	}
