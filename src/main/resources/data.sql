@@ -169,6 +169,11 @@ INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answe
 INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(63, 73, 0, 1, 0, 0, 1);
 INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(64, 87, 1, 0, 0, 0, 1);
 INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(65, 69, 0, 1, 0, 0, 1);
+INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(66, 10, 1, 0, 0, 0, 1);
+INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(67, 5, 0, 0, 1, 0, 1);
+INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(68, 7, 0, 0, 1, 0, 1);
+INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(69, 3, 1, 0, 0, 0, 1);
+INSERT INTO `Question_Statistic` (`statisticId`, `questionId`, `answerA`, `answerB`, `answerC`, `answerD`, `answerNumber`) VALUES(70, 6, 0, 0, 0, 1, 1);
 
 INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(1, 1, 2, 0.6);
 INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(2, 1, 2, 0.8);
@@ -201,3 +206,6 @@ INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(28, 2, 
 INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(29, 2, 3, 0.2);
 INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(30, 2, 3, 0.8);
 INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(31, 2, 5, 0.6);
+INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(32, 1, 1, 0.8);
+INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(33, 1, 1, 0.6);
+INSERT INTO `Test_Result` (`id`, `userId`, `categoryId`, `score`) VALUES(34, 1, 1, 0.8);

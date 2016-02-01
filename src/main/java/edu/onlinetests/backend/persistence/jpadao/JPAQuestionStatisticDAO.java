@@ -23,6 +23,7 @@ public class JPAQuestionStatisticDAO implements QuestionStatisticDAO {
 	public void storeQuestionStatistic(QuestionStatistic questionStatistic) {
 		EntityManager em = persistanceManager.getEntityManager();
 		em.getTransaction().begin();
+		em.persist(questionStatistic);
 		em.getTransaction().commit();
 		em.close();
 	}

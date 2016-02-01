@@ -10,8 +10,8 @@ public class PropertiesProviderTester {
 	@Test
 	public void testGetPropertiesFromFile() {
 		Properties properties = PropertiesProvider.getPropertiesFromFile("credentials.properties");
-		Assert.assertEquals("root", properties.getProperty("user"));
-		Assert.assertEquals("", properties.getProperty("password"));
+		Assert.assertEquals("Arnold", properties.getProperty("user"));
+		Assert.assertEquals("12345", properties.getProperty("password"));
 	}
 	
 	@Test
