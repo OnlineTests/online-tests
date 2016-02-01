@@ -32,7 +32,7 @@ public class RegisterController {
 	private String name;
 	private String password;
 	private String username;
-	private List<String> errors;
+	private List<String> errors = new ArrayList<>();
 	
 	public String register() {
 		User user = UserBuilder.getBuilder()
@@ -48,7 +48,11 @@ public class RegisterController {
 			SessionUtils.addUserInSession(user);
 			return Pages.MAIN_PAGE;
 		} catch(ServerException ex) {
-			errors = ex.getErrors();
+			if(ex.getErrors() == null) {
+				errors.add(ex.getMessage());
+			} else {
+				errors = ex.getErrors();
+			}
 			return Pages.REGISTER_PAGE;
 		}
 	}
